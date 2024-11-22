@@ -67,7 +67,7 @@
                       <Component id="objTitle3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="260" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -97,7 +97,7 @@
                   <Component id="objCad" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="objBack" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="50" max="32767" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,7 +108,8 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;&lt;center&gt;&lt;h1&gt;Cadastro de sei la oq fodase&lt;/h1&gt;&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;"/>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;body&gt;&lt;center&gt;&lt;h1&gt;Cadastro&lt;/h1&gt;&lt;/center&gt;&lt;/body&gt;&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="objTitle1">
