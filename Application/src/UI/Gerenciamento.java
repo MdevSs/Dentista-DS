@@ -469,6 +469,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         den_especialidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         den_cadastrar.setText("CADASTRAR");
+        den_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                den_cadastrarActionPerformed(evt);
+            }
+        });
 
         den_atualizar.setText("ATUALIZAR");
 
@@ -827,8 +832,24 @@ public class Gerenciamento extends javax.swing.JFrame {
     }//GEN-LAST:event_fun_cadastrarActionPerformed
 
     private void esp_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esp_cadastrarActionPerformed
-        // TODO add your handling code here:
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
     }//GEN-LAST:event_esp_cadastrarActionPerformed
+
+    private void den_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_den_cadastrarActionPerformed
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+        // FALTA TERMINAR AQUI
+    }//GEN-LAST:event_den_cadastrarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
