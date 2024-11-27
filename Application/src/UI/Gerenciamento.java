@@ -183,7 +183,9 @@ public class Gerenciamento extends javax.swing.JFrame {
             .addGroup(clienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cli_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(clienteLayout.createSequentialGroup()
+                        .addComponent(cli_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addGroup(clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -200,7 +202,6 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel1))
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(clienteLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,14 +314,15 @@ public class Gerenciamento extends javax.swing.JFrame {
             .addGroup(funcionarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(funcionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fun_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(funcionarioLayout.createSequentialGroup()
+                        .addComponent(fun_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE))
                     .addComponent(jLabel14)
                     .addComponent(jLabel15)
                     .addGroup(funcionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(fun_telefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                         .addComponent(fun_ctps, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel13))
-                .addGap(0, 100, Short.MAX_VALUE)
                 .addGroup(funcionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(funcionarioLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,11 +373,6 @@ public class Gerenciamento extends javax.swing.JFrame {
         esp_descricao.setMinimumSize(new java.awt.Dimension(200, 40));
 
         esp_cadastrar.setText("CADASTRAR");
-        esp_cadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                esp_cadastrarActionPerformed(evt);
-            }
-        });
 
         esp_atualizar.setText("ATUALIZAR");
 
@@ -408,11 +405,12 @@ public class Gerenciamento extends javax.swing.JFrame {
             .addGroup(especialidadeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(especialidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(esp_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(especialidadeLayout.createSequentialGroup()
+                        .addComponent(esp_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jLabel17)
                     .addComponent(esp_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(especialidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(especialidadeLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -469,11 +467,6 @@ public class Gerenciamento extends javax.swing.JFrame {
         den_especialidade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         den_cadastrar.setText("CADASTRAR");
-        den_cadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                den_cadastrarActionPerformed(evt);
-            }
-        });
 
         den_atualizar.setText("ATUALIZAR");
 
@@ -607,14 +600,15 @@ public class Gerenciamento extends javax.swing.JFrame {
             .addGroup(servicoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(servicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ser_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(servicoLayout.createSequentialGroup()
+                        .addComponent(ser_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE))
                     .addComponent(jLabel18)
                     .addComponent(jLabel19)
                     .addGroup(servicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(ser_valor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                         .addComponent(ser_duracao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel12))
-                .addGap(0, 100, Short.MAX_VALUE)
                 .addGroup(servicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(servicoLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -830,26 +824,6 @@ public class Gerenciamento extends javax.swing.JFrame {
             insert.cadastro(fun);
         }
     }//GEN-LAST:event_fun_cadastrarActionPerformed
-
-    private void esp_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esp_cadastrarActionPerformed
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-    }//GEN-LAST:event_esp_cadastrarActionPerformed
-
-    private void den_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_den_cadastrarActionPerformed
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-        // FALTA TERMINAR AQUI
-    }//GEN-LAST:event_den_cadastrarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
