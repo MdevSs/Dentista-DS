@@ -2,7 +2,8 @@
 - ### [Baixar Projeto](https://github.com/MdevSs/Dentista-DS/raw/main/Download/Dentista.zip)
 - ### [Baixar JDBC](https://github.com/MdevSs/Dentista-DS/raw/main/Download/mysql-connector-j-9.1.0.jar)
 > Caso seja necessário baixar através do link [`https://dev.mysql.com/downloads/file/?id=534782`](https://dev.mysql.com/downloads/file/?id=534782)
-- ### [Baixar o modelo do Banco de Dados](https://github.com/MdevSs/Dentista-DS/raw/Atualizando/Download/dentista.sql)
+- ### [Baixar o modelo do Banco de Dados (.sql)](https://github.com/MdevSs/Dentista-DS/raw/Atualizando/Download/dentista.sql)
+- ### [Baixar o modelo do Banco de Dados (.zip)](https://github.com/MdevSs/Dentista-DS/raw/Atualizando/Download/dentistaDB.zip)
 
 <br>
 
