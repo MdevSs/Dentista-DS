@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19/11/2024 às 20:47
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.0.28
+-- Tempo de geração: 29/11/2024 às 22:27
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,8 +33,15 @@ CREATE TABLE `atendimento` (
   `cliente_id` int(10) UNSIGNED NOT NULL,
   `servico_id` int(10) UNSIGNED NOT NULL,
   `funcionario_id` int(10) UNSIGNED NOT NULL,
-  `data` datetime NOT NULL
+  `data` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `atendimento`
+--
+
+INSERT INTO `atendimento` (`atendimento_id`, `dentista_id`, `cliente_id`, `servico_id`, `funcionario_id`, `data`) VALUES
+(3, 1, 1, 1, 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -54,6 +61,13 @@ CREATE TABLE `cliente` (
   `estado` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `cliente`
+--
+
+INSERT INTO `cliente` (`cliente_id`, `nome`, `cpf`, `email`, `numero`, `rua`, `bairro`, `cidade`, `estado`) VALUES
+(1, 'Lele', '324234234', 'adawdad', '223', 'adawdaw', 'awdawdaw', 'awdawdawda', 'aaddawdawd');
+
 -- --------------------------------------------------------
 
 --
@@ -68,6 +82,13 @@ CREATE TABLE `dentista` (
   `telefone` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `dentista`
+--
+
+INSERT INTO `dentista` (`dentista_id`, `especialidade_id`, `nome`, `cro`, `telefone`) VALUES
+(1, 1, 'Marcelão', 'algo', '13213121');
+
 -- --------------------------------------------------------
 
 --
@@ -79,6 +100,13 @@ CREATE TABLE `especialidade` (
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `especialidade`
+--
+
+INSERT INTO `especialidade` (`especialidade_id`, `nome`, `descricao`) VALUES
+(1, 'Obturação', 'Faz cacada');
 
 -- --------------------------------------------------------
 
@@ -93,6 +121,13 @@ CREATE TABLE `funcionario` (
   `telefone` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `funcionario`
+--
+
+INSERT INTO `funcionario` (`funcionario_id`, `nome`, `ctps`, `telefone`) VALUES
+(1, 'Burro', 'adawdawd', '2212313123');
+
 -- --------------------------------------------------------
 
 --
@@ -105,6 +140,13 @@ CREATE TABLE `servico` (
   `duracao` time NOT NULL,
   `valor` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `servico`
+--
+
+INSERT INTO `servico` (`servico_id`, `descricao`, `duracao`, `valor`) VALUES
+(1, 'MUITO RUIM', '17:26:10', 10.5);
 
 --
 -- Índices para tabelas despejadas
@@ -159,37 +201,37 @@ ALTER TABLE `servico`
 -- AUTO_INCREMENT de tabela `atendimento`
 --
 ALTER TABLE `atendimento`
-  MODIFY `atendimento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `atendimento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `cliente_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `cliente_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `dentista`
 --
 ALTER TABLE `dentista`
-  MODIFY `dentista_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `dentista_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `especialidade`
 --
 ALTER TABLE `especialidade`
-  MODIFY `especialidade_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `especialidade_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `funcionario_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `funcionario_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `servico`
 --
 ALTER TABLE `servico`
-  MODIFY `servico_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `servico_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para tabelas despejadas
