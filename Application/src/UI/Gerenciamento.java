@@ -183,9 +183,7 @@ public class Gerenciamento extends javax.swing.JFrame {
             .addGroup(clienteLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(clienteLayout.createSequentialGroup()
-                        .addComponent(cli_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(cli_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addGroup(clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -202,6 +200,7 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel1))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(clienteLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -314,15 +313,14 @@ public class Gerenciamento extends javax.swing.JFrame {
             .addGroup(funcionarioLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(funcionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(funcionarioLayout.createSequentialGroup()
-                        .addComponent(fun_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(fun_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(jLabel15)
                     .addGroup(funcionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(fun_telefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                         .addComponent(fun_ctps, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel13))
+                .addGap(0, 100, Short.MAX_VALUE)
                 .addGroup(funcionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(funcionarioLayout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -405,12 +403,11 @@ public class Gerenciamento extends javax.swing.JFrame {
             .addGroup(especialidadeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(especialidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(especialidadeLayout.createSequentialGroup()
-                        .addComponent(esp_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(esp_nome, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel17)
                     .addComponent(esp_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(especialidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(especialidadeLayout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -568,6 +565,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         ser_valor.setMinimumSize(new java.awt.Dimension(200, 40));
 
         ser_cadastrar.setText("CADASTRAR");
+        ser_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ser_cadastrarActionPerformed(evt);
+            }
+        });
 
         ser_atualizar.setText("ATUALIZAR");
 
@@ -600,15 +602,14 @@ public class Gerenciamento extends javax.swing.JFrame {
             .addGroup(servicoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(servicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(servicoLayout.createSequentialGroup()
-                        .addComponent(ser_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(ser_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
                     .addComponent(jLabel19)
                     .addGroup(servicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(ser_valor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                         .addComponent(ser_duracao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel12))
+                .addGap(0, 100, Short.MAX_VALUE)
                 .addGroup(servicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(servicoLayout.createSequentialGroup()
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -657,6 +658,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         jLabel22.setText("Dentista");
 
         ate_dentista.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ate_dentista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ate_dentistaActionPerformed(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel23.setText("Cliente");
@@ -674,6 +680,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         ate_funcionario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         ate_cadastrar.setText("CADASTRAR");
+        ate_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ate_cadastrarActionPerformed(evt);
+            }
+        });
 
         ate_atualizar.setText("ATUALIZAR");
 
@@ -825,6 +836,49 @@ public class Gerenciamento extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_fun_cadastrarActionPerformed
 
+    private void fncarregarDados(){
+        
+    }
+    
+    private void ser_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ser_cadastrarActionPerformed
+        if(ser_descricao.getText().isEmpty() || ser_duracao.getText().isEmpty() || ser_valor.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        }
+        else {
+            servico ser = new servico();
+            servicoDAO insert = new servicoDAO();
+            
+            ser.setServico_desc(ser_descricao.getText());
+            ser.setServico_duracao(ser_duracao.getText());
+            ser.setServico_valor(Double.parseDouble(ser_valor.getText()));
+            
+            insert.cadastro(ser);
+        }
+    }//GEN-LAST:event_ser_cadastrarActionPerformed
+
+    private void ate_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ate_cadastrarActionPerformed
+        
+         //JOptionPane.showMessageDialog(null, ate_dentista.getSelectedItem().toString()+"\n\n"+ate_cliente.getSelectedItem()+"\n\n"+ate_servico.getSelectedItem()+"\n\n"+ate_funcionario.getSelectedItem());
+        if(ate_dentista.getSelectedItem().equals("Selecione uma opção") || ate_cliente.getSelectedItem().equals("Selecione uma opção") || ate_servico.getSelectedItem().equals("Selecione uma opção") || ate_funcionario.getSelectedItem().equals("Selecione uma opção")) {;;;
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        }
+        else {
+            atendimento ate = new atendimento();
+            atendimentoDAO insert = new atendimentoDAO();
+            
+            ate.setDentista_id(Integer.parseInt(ate_dentista.getSelectedItem().toString()));
+            ate.setCliente_id(Integer.parseInt(ate_cliente.getSelectedItem().toString()));
+            ate.setServico_id(Integer.parseInt(ate_servico.getSelectedItem().toString()));
+            ate.setFunctionario_id(Integer.parseInt(ate_funcionario.getSelectedItem().toString()));
+            
+            insert.cadastro(ate);
+        }
+    }//GEN-LAST:event_ate_cadastrarActionPerformed
+
+    private void ate_dentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ate_dentistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ate_dentistaActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -848,7 +902,6 @@ public class Gerenciamento extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Gerenciamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

@@ -5,6 +5,7 @@ public class atendimento {
     int cliente_id;
     int dentista_id;
     int servico_id;
+    int funcionario_id;
     String data; //Data + horario
 
     public int getAtendimento_id() {
@@ -45,5 +46,13 @@ public class atendimento {
 
     public void setData(String data) {
         this.data = data;
+    }
+    
+    public int getFuncionario_id(){
+        return funcionario_id;
+    }
+    
+    public void setFunctionario_id(int funcionario_id) {
+        this.funcionario_id = funcionario_id;
     }
 }
