@@ -886,7 +886,7 @@ public class Gerenciamento extends javax.swing.JFrame {
     private void ate_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ate_cadastrarActionPerformed
 
         //JOptionPane.showMessageDialog(null, ate_dentista.getSelectedItem().toString()+"\n\n"+ate_cliente.getSelectedItem()+"\n\n"+ate_servico.getSelectedItem()+"\n\n"+ate_funcionario.getSelectedItem());
-        if(ate_dentista.getSelectedItem().equals("Selecione uma opção") || ate_cliente.getSelectedItem().equals("Selecione uma opção") || ate_servico.getSelectedItem().equals("Selecione uma opção") || ate_funcionario.getSelectedItem().equals("Selecione uma opção")) {;;;
+        if(ate_dentista.getSelectedItem().equals("Selecione uma opção") || ate_cliente.getSelectedItem().equals("-- Selecione --") || ate_servico.getSelectedItem().equals("-- Selecione --") || ate_funcionario.getSelectedItem().equals("-- Selecione --")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
         else {

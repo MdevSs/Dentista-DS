@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29/11/2024 às 22:27
+-- Tempo de geração: 06/12/2024 às 05:46
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `atendimento` (
 --
 
 INSERT INTO `atendimento` (`atendimento_id`, `dentista_id`, `cliente_id`, `servico_id`, `funcionario_id`, `data`) VALUES
-(3, 1, 1, 1, 1, '0000-00-00 00:00:00');
+(3, 1, 1, 1, 1, '0000-00-00 00:00:00'),
+(4, 1, 1, 1, 1, '2024-12-06 00:15:19');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,8 @@ CREATE TABLE `dentista` (
 --
 
 INSERT INTO `dentista` (`dentista_id`, `especialidade_id`, `nome`, `cro`, `telefone`) VALUES
-(1, 1, 'Marcelão', 'algo', '13213121');
+(1, 1, 'Marcelão', 'algo', '13213121'),
+(2, 1, 'Gerso', '', '1231232131');
 
 -- --------------------------------------------------------
 
@@ -201,7 +203,7 @@ ALTER TABLE `servico`
 -- AUTO_INCREMENT de tabela `atendimento`
 --
 ALTER TABLE `atendimento`
-  MODIFY `atendimento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `atendimento_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
@@ -213,7 +215,7 @@ ALTER TABLE `cliente`
 -- AUTO_INCREMENT de tabela `dentista`
 --
 ALTER TABLE `dentista`
-  MODIFY `dentista_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `dentista_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `especialidade`
