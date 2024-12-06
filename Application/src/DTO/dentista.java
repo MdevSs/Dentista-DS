@@ -2,7 +2,7 @@ package DTO;
 
 public class dentista {
     int dentista_id;
-    int especialidade_id; //FK
+    String especialidade_id; //FK
     String dentista_nome;
     String dentista_cro;
     String dentista_tel;
@@ -15,11 +15,11 @@ public class dentista {
         this.dentista_id = dentista_id;
     }
 
-    public int getEspecialidade_id() {
+    public String getEspecialidade_id() {
         return especialidade_id;
     }
 
-    public void setEspecialidade_id(int especialidade_id) {
+    public void setEspecialidade_id(String especialidade_id) {
         this.especialidade_id = especialidade_id;
     }
 

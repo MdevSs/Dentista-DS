@@ -14,6 +14,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowOpened" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowOpened"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -83,19 +86,22 @@
                           </Group>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" min="-2" pref="526" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="cli_cadastrar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="cli_atualizar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cli_fechar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="cli_remover" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cli_carregar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -109,7 +115,8 @@
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cli_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cli_atualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cli_fechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cli_remover" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cli_carregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -146,7 +153,7 @@
                           </Group>
                           <Component id="jScrollPane1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="161" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -285,9 +292,9 @@
                 <Property name="text" type="java.lang.String" value="ATUALIZAR"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="cli_fechar">
+            <Component class="javax.swing.JButton" name="cli_remover">
               <Properties>
-                <Property name="text" type="java.lang.String" value="FECHAR"/>
+                <Property name="text" type="java.lang.String" value="REMOVER"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -316,6 +323,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="cli_carregar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CARREGAR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cli_carregarActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="funcionario">
@@ -342,19 +357,22 @@
                           </Group>
                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="526" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="fun_cadastrar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="fun_atualizar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="fun_fechar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="fun_REMOVER" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="fun_carregar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -368,7 +386,8 @@
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="fun_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="fun_atualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fun_fechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fun_REMOVER" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="fun_carregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -449,9 +468,9 @@
                 <Property name="text" type="java.lang.String" value="ATUALIZAR"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="fun_fechar">
+            <Component class="javax.swing.JButton" name="fun_REMOVER">
               <Properties>
-                <Property name="text" type="java.lang.String" value="FECHAR"/>
+                <Property name="text" type="java.lang.String" value="REMOVER"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -475,6 +494,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="fun_carregar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CARREGAR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fun_carregarActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="especialidade">
@@ -497,19 +524,22 @@
                           <Component id="esp_descricao" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
                               <Component id="jScrollPane3" min="-2" pref="526" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="esp_cadastrar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="esp_atualizar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="esp_fechar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="esp_remover" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="esp_carregar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -523,7 +553,8 @@
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="esp_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="esp_atualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="esp_fechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="esp_remover" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="esp_carregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -582,9 +613,9 @@
                 <Property name="text" type="java.lang.String" value="ATUALIZAR"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="esp_fechar">
+            <Component class="javax.swing.JButton" name="esp_remover">
               <Properties>
-                <Property name="text" type="java.lang.String" value="FECHAR"/>
+                <Property name="text" type="java.lang.String" value="REMOVER"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane3">
@@ -597,17 +628,24 @@
                 <Component class="javax.swing.JTable" name="esp_table">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="4" rowCount="3">
+                      <Table columnCount="3" rowCount="3">
                         <Column editable="true" title="id" type="java.lang.Integer"/>
                         <Column editable="true" title="nome" type="java.lang.String"/>
-                        <Column editable="true" title="ctps" type="java.lang.String"/>
-                        <Column editable="true" title="telefone" type="java.lang.String"/>
+                        <Column editable="true" title="descri&#xe7;&#xe3;o" type="java.lang.String"/>
                       </Table>
                     </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="esp_carregar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CARREGAR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="esp_carregarActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="dentista">
@@ -636,19 +674,22 @@
                               <Component id="den_especialidade" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
                               <Component id="jScrollPane4" min="-2" pref="526" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="den_cadastrar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="den_atualizar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="den_fechar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="den_remover" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="den_carregar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -662,7 +703,8 @@
                           <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="den_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="den_atualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="den_fechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="den_remover" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="den_carregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -739,17 +781,14 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="18" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Telefone"/>
+                <Property name="text" type="java.lang.String" value="Especialidade"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="den_especialidade">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="-- Selecione --"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -761,15 +800,18 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="CADASTRAR"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="den_cadastrarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="den_atualizar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="ATUALIZAR"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="den_fechar">
+            <Component class="javax.swing.JButton" name="den_remover">
               <Properties>
-                <Property name="text" type="java.lang.String" value="FECHAR"/>
+                <Property name="text" type="java.lang.String" value="REMOVER"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane4">
@@ -782,22 +824,26 @@
                 <Component class="javax.swing.JTable" name="den_table">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="3">
+                      <Table columnCount="5" rowCount="3">
                         <Column editable="true" title="id" type="java.lang.Integer"/>
+                        <Column editable="true" title="especialidade" type="java.lang.String"/>
                         <Column editable="true" title="nome" type="java.lang.String"/>
-                        <Column editable="true" title="cpf" type="java.lang.String"/>
-                        <Column editable="true" title="email" type="java.lang.String"/>
-                        <Column editable="true" title="numero" type="java.lang.String"/>
-                        <Column editable="true" title="rua" type="java.lang.String"/>
-                        <Column editable="true" title="bairro" type="java.lang.String"/>
-                        <Column editable="true" title="cidade" type="java.lang.String"/>
-                        <Column editable="true" title="estado" type="java.lang.String"/>
+                        <Column editable="true" title="cro" type="java.lang.String"/>
+                        <Column editable="true" title="telefone" type="java.lang.String"/>
                       </Table>
                     </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="den_carregar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CARREGAR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="den_carregarActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="servico">
@@ -824,19 +870,22 @@
                           </Group>
                           <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
                               <Component id="jScrollPane5" min="-2" pref="526" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="ser_cadastrar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="ser_atualizar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="ser_fechar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="ser_remover" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="ser_carregar" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -850,7 +899,8 @@
                           <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ser_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ser_atualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ser_fechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ser_remover" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ser_carregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -931,9 +981,9 @@
                 <Property name="text" type="java.lang.String" value="ATUALIZAR"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="ser_fechar">
+            <Component class="javax.swing.JButton" name="ser_remover">
               <Properties>
-                <Property name="text" type="java.lang.String" value="FECHAR"/>
+                <Property name="text" type="java.lang.String" value="REMOVER"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane5">
@@ -946,22 +996,25 @@
                 <Component class="javax.swing.JTable" name="ser_table">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="3">
+                      <Table columnCount="4" rowCount="3">
                         <Column editable="true" title="id" type="java.lang.Integer"/>
-                        <Column editable="true" title="nome" type="java.lang.String"/>
-                        <Column editable="true" title="cpf" type="java.lang.String"/>
-                        <Column editable="true" title="email" type="java.lang.String"/>
-                        <Column editable="true" title="numero" type="java.lang.String"/>
-                        <Column editable="true" title="rua" type="java.lang.String"/>
-                        <Column editable="true" title="bairro" type="java.lang.String"/>
-                        <Column editable="true" title="cidade" type="java.lang.String"/>
-                        <Column editable="true" title="estado" type="java.lang.String"/>
+                        <Column editable="true" title="descri&#xe7;&#xe3;o" type="java.lang.String"/>
+                        <Column editable="true" title="dura&#xe7;&#xe3;o" type="java.lang.String"/>
+                        <Column editable="true" title="valor" type="java.lang.Float"/>
                       </Table>
                     </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="ser_carregar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CARREGAR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ser_carregarActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="atendimento">
@@ -1003,19 +1056,19 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane6" min="-2" pref="526" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane6" min="-2" pref="526" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="ate_cadastrar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="ate_atualizar" min="-2" pref="102" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="ate_fechar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="167" max="-2" attributes="0"/>
+                              <Component id="ate_remover" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="ate_carregar" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1027,7 +1080,8 @@
                           <Component id="jLabel21" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ate_cadastrar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ate_atualizar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ate_fechar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ate_remover" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="ate_carregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1084,11 +1138,8 @@
             <Component class="javax.swing.JComboBox" name="ate_dentista">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="-- Selecione --"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1110,11 +1161,8 @@
             <Component class="javax.swing.JComboBox" name="ate_cliente">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="-- Selecione --"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1133,11 +1181,8 @@
             <Component class="javax.swing.JComboBox" name="ate_servico">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="-- Selecione --"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1156,11 +1201,8 @@
             <Component class="javax.swing.JComboBox" name="ate_funcionario">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="-- Selecione --"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -1181,9 +1223,9 @@
                 <Property name="text" type="java.lang.String" value="ATUALIZAR"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="ate_fechar">
+            <Component class="javax.swing.JButton" name="ate_remover">
               <Properties>
-                <Property name="text" type="java.lang.String" value="FECHAR"/>
+                <Property name="text" type="java.lang.String" value="REMOVER"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane6">
@@ -1196,22 +1238,27 @@
                 <Component class="javax.swing.JTable" name="ate_table">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="9" rowCount="3">
+                      <Table columnCount="6" rowCount="3">
                         <Column editable="true" title="id" type="java.lang.Integer"/>
-                        <Column editable="true" title="nome" type="java.lang.String"/>
-                        <Column editable="true" title="cpf" type="java.lang.String"/>
-                        <Column editable="true" title="email" type="java.lang.String"/>
-                        <Column editable="true" title="numero" type="java.lang.String"/>
-                        <Column editable="true" title="rua" type="java.lang.String"/>
-                        <Column editable="true" title="bairro" type="java.lang.String"/>
-                        <Column editable="true" title="cidade" type="java.lang.String"/>
-                        <Column editable="true" title="estado" type="java.lang.String"/>
+                        <Column editable="true" title="dentista" type="java.lang.String"/>
+                        <Column editable="true" title="cliente" type="java.lang.String"/>
+                        <Column editable="true" title="servi&#xe7;o" type="java.lang.String"/>
+                        <Column editable="true" title="funcion&#xe1;rio" type="java.lang.String"/>
+                        <Column editable="true" title="data" type="java.lang.String"/>
                       </Table>
                     </Property>
                   </Properties>
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="ate_carregar">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="CARREGAR"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ate_carregarActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>

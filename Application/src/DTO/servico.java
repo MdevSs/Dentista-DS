@@ -4,7 +4,7 @@ public class servico {
     int servico_id;
     String servico_desc;
     String servico_duracao;
-    Double servico_valor;
+    float servico_valor;
 
     public int getServico_id() {
         return servico_id;
@@ -30,11 +30,11 @@ public class servico {
         this.servico_duracao = servico_duracao;
     }
 
-    public Double getServico_valor() {
+    public float getServico_valor() {
         return servico_valor;
     }
 
-    public void setServico_valor(Double servico_valor) {
+    public void setServico_valor(float servico_valor) {
         this.servico_valor = servico_valor;
     }
 }

@@ -1,6 +1,7 @@
 package DAO;
 import DTO.servico;
 import java.sql.*;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 /**
  *
@@ -9,6 +10,8 @@ import javax.swing.JOptionPane;
 public class servicoDAO {
     Connection con;
     PreparedStatement pstm;
+    ResultSet rs;
+    ArrayList<servico> lista = new ArrayList<>();
     
     public void cadastro(servico ser) {
         String sql = "INSERT INTO servico(descricao, duracao, valor) VALUES (?, ?, ?)";
@@ -29,5 +32,32 @@ public class servicoDAO {
         catch(SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro de cadastro!\nErro: " + erro);
         }
+    }
+    
+    public ArrayList<servico> CarregaServico(){
+        con = new ConexaoDAO().conectaBD();
+        
+        String sql = "SELECT * FROM servico";
+        
+        try {
+        
+            pstm = con.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            
+            while(rs.next()){
+                servico ser = new servico();
+                ser.setServico_id(rs.getInt("servico_id"));
+                ser.setServico_desc(rs.getString("descricao"));
+                ser.setServico_duracao(rs.getString("duracao"));
+                ser.setServico_valor(rs.getFloat("valor"));
+                
+                lista.add(ser);
+            }
+            
+        }catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar registros de serviço: "+ e.getMessage());
+        }
+        
+        return lista;
     }
 }
