@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 06/12/2024 às 05:46
+-- Tempo de geração: 12/12/2024 às 01:31
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -33,16 +33,17 @@ CREATE TABLE `atendimento` (
   `cliente_id` int(10) UNSIGNED NOT NULL,
   `servico_id` int(10) UNSIGNED NOT NULL,
   `funcionario_id` int(10) UNSIGNED NOT NULL,
-  `data` datetime NOT NULL DEFAULT current_timestamp()
+  `data` datetime NOT NULL DEFAULT current_timestamp(),
+  `ativo` tinyint(2) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `atendimento`
 --
 
-INSERT INTO `atendimento` (`atendimento_id`, `dentista_id`, `cliente_id`, `servico_id`, `funcionario_id`, `data`) VALUES
-(3, 1, 1, 1, 1, '0000-00-00 00:00:00'),
-(4, 1, 1, 1, 1, '2024-12-06 00:15:19');
+INSERT INTO `atendimento` (`atendimento_id`, `dentista_id`, `cliente_id`, `servico_id`, `funcionario_id`, `data`, `ativo`) VALUES
+(3, 1, 1, 1, 1, '0000-00-00 00:00:00', 0),
+(4, 1, 1, 1, 1, '2024-12-06 00:15:19', 1);
 
 -- --------------------------------------------------------
 
@@ -59,15 +60,20 @@ CREATE TABLE `cliente` (
   `rua` varchar(100) NOT NULL,
   `bairro` varchar(100) NOT NULL,
   `cidade` varchar(100) NOT NULL,
-  `estado` varchar(100) NOT NULL
+  `estado` varchar(100) NOT NULL,
+  `ativo` tinyint(2) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `cliente`
 --
 
-INSERT INTO `cliente` (`cliente_id`, `nome`, `cpf`, `email`, `numero`, `rua`, `bairro`, `cidade`, `estado`) VALUES
-(1, 'Lele', '324234234', 'adawdad', '223', 'adawdaw', 'awdawdaw', 'awdawdawda', 'aaddawdawd');
+INSERT INTO `cliente` (`cliente_id`, `nome`, `cpf`, `email`, `numero`, `rua`, `bairro`, `cidade`, `estado`, `ativo`) VALUES
+(1, 'Lele', '324234234', 'adawdad', '223', 'adawdaw', 'awdawdaw', 'awdawdawda', 'aaddawdawd', 1),
+(2, 'ADadada', '22331231', 'dawdadawd', '234234242', '2342342', '2342424', 'adadadada', 'aawdawdaww', 1),
+(3, 'Ju', 'aadadada', 'addadadd', 'adadawdawdaw', 'adawdawdada', 'adadawdada', 'adawdawdawd', 'adawdawda', 1),
+(4, 'JUberto', 'adaddawda', 'adawdawdaw', 'n', 'jjj', 'jn', 'kn', 'nknknk', 1),
+(5, 'Claudio', 'dadawdawd', 'sfsfsfse', 'hjbjbjhhb', 'jhbjh', 'jbj', 'bjbjb', 'jhbj', 1);
 
 -- --------------------------------------------------------
 
@@ -80,16 +86,17 @@ CREATE TABLE `dentista` (
   `especialidade_id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(100) NOT NULL,
   `cro` varchar(100) NOT NULL,
-  `telefone` varchar(100) NOT NULL
+  `telefone` varchar(100) NOT NULL,
+  `ativo` tinyint(2) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `dentista`
 --
 
-INSERT INTO `dentista` (`dentista_id`, `especialidade_id`, `nome`, `cro`, `telefone`) VALUES
-(1, 1, 'Marcelão', 'algo', '13213121'),
-(2, 1, 'Gerso', '', '1231232131');
+INSERT INTO `dentista` (`dentista_id`, `especialidade_id`, `nome`, `cro`, `telefone`, `ativo`) VALUES
+(1, 1, 'Marcelão', 'algo', '13213121', 1),
+(2, 1, 'Gerso', '', '1231232131', 0);
 
 -- --------------------------------------------------------
 
@@ -100,15 +107,16 @@ INSERT INTO `dentista` (`dentista_id`, `especialidade_id`, `nome`, `cro`, `telef
 CREATE TABLE `especialidade` (
   `especialidade_id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(100) NOT NULL,
-  `descricao` varchar(1000) NOT NULL
+  `descricao` varchar(1000) NOT NULL,
+  `ativo` tinyint(2) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `especialidade`
 --
 
-INSERT INTO `especialidade` (`especialidade_id`, `nome`, `descricao`) VALUES
-(1, 'Obturação', 'Faz cacada');
+INSERT INTO `especialidade` (`especialidade_id`, `nome`, `descricao`, `ativo`) VALUES
+(1, 'Obturação', 'Faz cacada', 1);
 
 -- --------------------------------------------------------
 
@@ -120,15 +128,16 @@ CREATE TABLE `funcionario` (
   `funcionario_id` int(10) UNSIGNED NOT NULL,
   `nome` varchar(100) NOT NULL,
   `ctps` varchar(100) NOT NULL,
-  `telefone` varchar(100) NOT NULL
+  `telefone` varchar(100) NOT NULL,
+  `ativo` tinyint(2) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `funcionario`
 --
 
-INSERT INTO `funcionario` (`funcionario_id`, `nome`, `ctps`, `telefone`) VALUES
-(1, 'Burro', 'adawdawd', '2212313123');
+INSERT INTO `funcionario` (`funcionario_id`, `nome`, `ctps`, `telefone`, `ativo`) VALUES
+(1, 'Burro', 'adawdawd', '2212313123', 0);
 
 -- --------------------------------------------------------
 
@@ -140,15 +149,16 @@ CREATE TABLE `servico` (
   `servico_id` int(10) UNSIGNED NOT NULL,
   `descricao` varchar(1000) NOT NULL,
   `duracao` time NOT NULL,
-  `valor` float NOT NULL
+  `valor` float NOT NULL,
+  `ativo` tinyint(2) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Despejando dados para a tabela `servico`
 --
 
-INSERT INTO `servico` (`servico_id`, `descricao`, `duracao`, `valor`) VALUES
-(1, 'MUITO RUIM', '17:26:10', 10.5);
+INSERT INTO `servico` (`servico_id`, `descricao`, `duracao`, `valor`, `ativo`) VALUES
+(1, 'MUITO RUIM', '17:26:10', 10.5, 1);
 
 --
 -- Índices para tabelas despejadas
@@ -209,7 +219,7 @@ ALTER TABLE `atendimento`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `cliente_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cliente_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `dentista`
