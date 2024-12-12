@@ -34,7 +34,7 @@ public class funcionarioDAO {
     public ArrayList<funcionario> CarregaFuncionario(){
         con = new ConexaoDAO().conectaBD();
         
-        String sql = "SELECT * FROM funcionario";
+        String sql = "SELECT * FROM funcionario WHERE ativo = 1";
         
         try {
         
@@ -57,5 +57,31 @@ public class funcionarioDAO {
         }
         
         return lista;
+    }
+
+    public void RemoverRegistros(int[] nCodigos) {
+        String sql = "UPDATE funcionario SET ativo = 0 WHERE ";
+        
+        for(int i = 0; i< nCodigos.length; i++) {
+            if(i == 0)
+                sql += "funcionario_id = "+ nCodigos[i];
+            else
+                sql += " OR funcionario_id = "+ nCodigos[i];
+        }
+        
+        try{
+        
+            con = new ConexaoDAO().conectaBD();
+            
+            pstm = con.prepareStatement(sql);
+            
+            pstm.execute();
+            
+            JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso");
+        } 
+        catch(SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro, Não fo possivel atualizar os dados: \n"+ erro);
+        }
+        
     }
 }

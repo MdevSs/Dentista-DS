@@ -168,8 +168,18 @@ public class Gerenciamento extends javax.swing.JFrame {
         });
 
         cli_atualizar.setText("ATUALIZAR");
+        cli_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cli_atualizarActionPerformed(evt);
+            }
+        });
 
         cli_remover.setText("REMOVER");
+        cli_remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cli_removerActionPerformed(evt);
+            }
+        });
 
         cli_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -311,6 +321,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         fun_atualizar.setText("ATUALIZAR");
 
         fun_REMOVER.setText("REMOVER");
+        fun_REMOVER.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fun_REMOVERActionPerformed(evt);
+            }
+        });
 
         fun_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -412,6 +427,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         esp_atualizar.setText("ATUALIZAR");
 
         esp_remover.setText("REMOVER");
+        esp_remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esp_removerActionPerformed(evt);
+            }
+        });
 
         esp_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -521,6 +541,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         den_atualizar.setText("ATUALIZAR");
 
         den_remover.setText("REMOVER");
+        den_remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                den_removerActionPerformed(evt);
+            }
+        });
 
         den_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -638,6 +663,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         ser_atualizar.setText("ATUALIZAR");
 
         ser_remover.setText("REMOVER");
+        ser_remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ser_removerActionPerformed(evt);
+            }
+        });
 
         ser_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -764,6 +794,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         ate_atualizar.setText("ATUALIZAR");
 
         ate_remover.setText("REMOVER");
+        ate_remover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ate_removerActionPerformed(evt);
+            }
+        });
 
         ate_table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -935,6 +970,7 @@ public class Gerenciamento extends javax.swing.JFrame {
             fun.setFuncionario_tel(fun_telefone.getText());
 
             insert.cadastro(fun);
+            
         }
     }//GEN-LAST:event_fun_cadastrarActionPerformed
 
@@ -1154,6 +1190,7 @@ public class Gerenciamento extends javax.swing.JFrame {
                     
                 
                 });
+                
             }
             
             if(model.getRowCount()<= 0){
@@ -1165,6 +1202,117 @@ public class Gerenciamento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
         }
     }//GEN-LAST:event_ate_carregarActionPerformed
+
+    private void ate_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ate_removerActionPerformed
+        
+        atendimentoDAO obj = new atendimentoDAO();
+        DefaultTableModel model = (DefaultTableModel)ate_table.getModel();
+        int[] nSelected = ate_table.getSelectedRows();
+        
+        if(nSelected.length!=0){
+            int[] nCodigos = new int [nSelected.length];
+            for(int i = 0; i<nSelected.length;i++){
+                nCodigos[i] = Integer.parseInt(model.getValueAt(nSelected[i], 0).toString());
+            }
+            obj.RemoverRegistros(nCodigos);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
+        
+        ate_carregarActionPerformed(evt);
+        
+    }//GEN-LAST:event_ate_removerActionPerformed
+
+    private void cli_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cli_removerActionPerformed
+        clienteDAO obj = new clienteDAO();
+        DefaultTableModel model = (DefaultTableModel)cli_table.getModel();
+        int[] nSelected = cli_table.getSelectedRows();
+        
+        if(nSelected.length!=0){
+            int[] nCodigos = new int [nSelected.length];
+            for(int i = 0; i<nSelected.length;i++){
+                
+                nCodigos[i] = Integer.parseInt(model.getValueAt(nSelected[i], 0).toString());
+            }
+            obj.RemoverRegistros(nCodigos);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
+        
+        cli_carregarActionPerformed(evt);
+        
+    }//GEN-LAST:event_cli_removerActionPerformed
+
+    private void cli_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cli_atualizarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cli_atualizarActionPerformed
+
+    private void fun_REMOVERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fun_REMOVERActionPerformed
+        funcionarioDAO obj = new funcionarioDAO();
+        DefaultTableModel model = (DefaultTableModel)fun_table.getModel();
+        int[] nSelected = fun_table.getSelectedRows();
+        
+        if(nSelected.length!=0){
+            int[] nCodigos = new int [nSelected.length];
+            for(int i = 0; i<nSelected.length;i++){
+                
+                nCodigos[i] = Integer.parseInt(model.getValueAt(nSelected[i], 0).toString());
+            }
+            obj.RemoverRegistros(nCodigos);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");  
+        
+        fun_carregarActionPerformed(evt);
+    }//GEN-LAST:event_fun_REMOVERActionPerformed
+
+    private void esp_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esp_removerActionPerformed
+        especialidadeDAO obj = new especialidadeDAO();
+        DefaultTableModel model = (DefaultTableModel)esp_table.getModel();
+        int[] nSelected = esp_table.getSelectedRows();
+        
+        if(nSelected.length!=0){
+            int[] nCodigos = new int [nSelected.length];
+            for(int i = 0; i<nSelected.length;i++){
+                nCodigos[i] = Integer.parseInt(model.getValueAt(nSelected[i], 0).toString());
+            }
+            obj.RemoverRegistros(nCodigos);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
+        
+        esp_carregarActionPerformed(evt);
+    }//GEN-LAST:event_esp_removerActionPerformed
+
+    private void den_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_den_removerActionPerformed
+        dentistaDAO obj = new dentistaDAO();
+        DefaultTableModel model = (DefaultTableModel)den_table.getModel();
+        int[] nSelected = den_table.getSelectedRows();
+        
+        if(nSelected.length!=0){
+            int[] nCodigos = new int [nSelected.length];
+            for(int i = 0; i<nSelected.length;i++){
+                nCodigos[i] = Integer.parseInt(model.getValueAt(nSelected[i], 0).toString());
+            }
+            obj.RemoverRegistros(nCodigos);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
+        
+        den_carregarActionPerformed(evt);
+    }//GEN-LAST:event_den_removerActionPerformed
+
+    private void ser_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ser_removerActionPerformed
+        servicoDAO obj = new servicoDAO();
+        DefaultTableModel model = (DefaultTableModel)ser_table.getModel();
+        int[] nSelected = ser_table.getSelectedRows();
+        
+        if(nSelected.length!=0){
+            int[] nCodigos = new int [nSelected.length];
+            for(int i = 0; i<nSelected.length;i++){
+                nCodigos[i] = Integer.parseInt(model.getValueAt(nSelected[i], 0).toString());
+            }
+            obj.RemoverRegistros(nCodigos);
+        }else
+            JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
+        
+        ser_carregarActionPerformed(evt);
+    }//GEN-LAST:event_ser_removerActionPerformed
 
     
     private void carregaDentista_Especialidade(){

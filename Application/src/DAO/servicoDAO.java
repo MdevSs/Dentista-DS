@@ -37,7 +37,7 @@ public class servicoDAO {
     public ArrayList<servico> CarregaServico(){
         con = new ConexaoDAO().conectaBD();
         
-        String sql = "SELECT * FROM servico";
+        String sql = "SELECT * FROM servico WHERE ativo = 1";
         
         try {
         
@@ -59,5 +59,30 @@ public class servicoDAO {
         }
         
         return lista;
+    }
+
+    public void RemoverRegistros(int[] nCodigos) {
+        String sql = "UPDATE servico SET ativo = 0 WHERE ";
+        
+        for(int i = 0; i< nCodigos.length; i++) {
+            if(i == 0)
+                sql += "servico_id = "+ nCodigos[i];
+            else
+                sql += " OR servico_id = "+ nCodigos[i];
+        }
+        
+        try{
+        
+            con = new ConexaoDAO().conectaBD();
+            
+            pstm = con.prepareStatement(sql);
+            
+            pstm.execute();
+            
+            JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso");
+        } 
+        catch(SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro, Não fo possivel atualizar os dados: \n"+ erro);
+        }
     }
 }

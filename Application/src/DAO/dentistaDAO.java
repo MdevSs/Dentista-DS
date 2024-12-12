@@ -37,7 +37,7 @@ public class dentistaDAO {
     public ArrayList<dentista> CarregaDentista(){
         con = new ConexaoDAO().conectaBD();
         
-        String sql = "SELECT d.dentista_id dentista_id , e.nome especialidade_id, d.nome nome, d.cro cro, d.telefone telefone FROM `dentista` AS d LEFT JOIN especialidade AS e ON e.especialidade_id = d.especialidade_id;";
+        String sql = "SELECT d.dentista_id dentista_id , e.nome especialidade_id, d.nome nome, d.cro cro, d.telefone telefone FROM `dentista` AS d LEFT JOIN especialidade AS e ON e.especialidade_id = d.especialidade_id WHERE d.ativo = 1";
         
         try {
         
@@ -61,5 +61,30 @@ public class dentistaDAO {
         }
         
         return lista;
+    }
+
+    public void RemoverRegistros(int[] nCodigos) {
+        String sql = "UPDATE dentista SET ativo = 0 WHERE ";
+        
+        for(int i = 0; i< nCodigos.length; i++) {
+            if(i == 0)
+                sql += "dentista_id = "+ nCodigos[i];
+            else
+                sql += " OR dentista_id = "+ nCodigos[i];
+        }
+        
+        try{
+        
+            con = new ConexaoDAO().conectaBD();
+            
+            pstm = con.prepareStatement(sql);
+            
+            pstm.execute();
+            
+            JOptionPane.showMessageDialog(null, "Dados atualizados com sucesso");
+        } 
+        catch(SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro, Não fo possivel atualizar os dados: \n"+ erro);
+        }
     }
 }
