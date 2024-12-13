@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/12/2024 às 01:31
+-- Tempo de geração: 13/12/2024 às 23:40
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -42,7 +42,7 @@ CREATE TABLE `atendimento` (
 --
 
 INSERT INTO `atendimento` (`atendimento_id`, `dentista_id`, `cliente_id`, `servico_id`, `funcionario_id`, `data`, `ativo`) VALUES
-(3, 1, 1, 1, 1, '0000-00-00 00:00:00', 0),
+(3, 2, 1, 1, 1, '2025-01-01 00:00:00', 0),
 (4, 1, 1, 1, 1, '2024-12-06 00:15:19', 1);
 
 -- --------------------------------------------------------
@@ -69,11 +69,14 @@ CREATE TABLE `cliente` (
 --
 
 INSERT INTO `cliente` (`cliente_id`, `nome`, `cpf`, `email`, `numero`, `rua`, `bairro`, `cidade`, `estado`, `ativo`) VALUES
-(1, 'Lele', '324234234', 'adawdad', '223', 'adawdaw', 'awdawdaw', 'awdawdawda', 'aaddawdawd', 1),
-(2, 'ADadada', '22331231', 'dawdadawd', '234234242', '2342342', '2342424', 'adadadada', 'aawdawdaww', 1),
-(3, 'Ju', 'aadadada', 'addadadd', 'adadawdawdaw', 'adawdawdada', 'adadawdada', 'adawdawdawd', 'adawdawda', 1),
+(1, 'Lele', '1', 'leleque@gmail.com', '223', 'Aldair Pombo', 'VIla Clarice', 'São Paulo', 'SP', 1),
+(2, 'ADadada', '22331231', 'dawdadawd', '234234242', '2342342', '2342424', 'adadadada', 'aawdawdaww', 0),
+(3, 'Junior', '111.222.333.45', 'Juliãomandrake2011@hotmail.com', '11', 'Castelo Branco', 'Jaragua', 'São Paulo', 'SP', 0),
 (4, 'JUberto', 'adaddawda', 'adawdawdaw', 'n', 'jjj', 'jn', 'kn', 'nknknk', 1),
-(5, 'Claudio', 'dadawdawd', 'sfsfsfse', 'hjbjbjhhb', 'jhbjh', 'jbj', 'bjbjb', 'jhbj', 1);
+(5, 'Claudio', 'dadawdawd', 'sfsfsfse', 'hjbjbjhhb', 'jhbjh', 'jbj', 'bjbjb', 'jhbj', 1),
+(6, 'Bebelo', '333.444.555-67', 'Bebe@outlook.com', '00', 'Jacobalacobaco', 'Penha', 'Porto Alegre', 'Alagoas', 0),
+(7, 'Junior', '111.222.333.45', 'Juliãomandrake2011@hotmail.com', '11', 'Castelo Branco', 'Jaragua', 'SP', 'São Paulo', 0),
+(8, 'Bebelo', '333.444.555-67', 'Bebe@outlook.com', '00', 'Jacobalacobaco', 'Penha', 'Alagoas', 'Porto Alegre', 1);
 
 -- --------------------------------------------------------
 
@@ -95,8 +98,10 @@ CREATE TABLE `dentista` (
 --
 
 INSERT INTO `dentista` (`dentista_id`, `especialidade_id`, `nome`, `cro`, `telefone`, `ativo`) VALUES
-(1, 1, 'Marcelão', 'algo', '13213121', 1),
-(2, 1, 'Gerso', '', '1231232131', 0);
+(1, 1, 'Marcelão', 'algo', '13213121', 0),
+(2, 2, 'Novo', 'Novo', '123', 1),
+(3, 1, 'Marcelão', 'algo', '13213121', 0),
+(4, 1, 'Marcelão', 'algo', '13213121', 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +121,10 @@ CREATE TABLE `especialidade` (
 --
 
 INSERT INTO `especialidade` (`especialidade_id`, `nome`, `descricao`, `ativo`) VALUES
-(1, 'Obturação', 'Faz cacada', 1);
+(1, 'Obturação', 'Ranca o dentão', 1),
+(2, 'Limpeza', 'Limpa os dentes', 0),
+(3, 'Limpeza', 'Limpa os dentes', 0),
+(4, 'Limpeza', 'Limpa os Dentes', 1);
 
 -- --------------------------------------------------------
 
@@ -137,7 +145,8 @@ CREATE TABLE `funcionario` (
 --
 
 INSERT INTO `funcionario` (`funcionario_id`, `nome`, `ctps`, `telefone`, `ativo`) VALUES
-(1, 'Burro', 'adawdawd', '2212313123', 0);
+(1, 'JuBERTO', 'Registrado', '11 9123234', 1),
+(2, 'Carla', 'Registrada', '11 91236543', 1);
 
 -- --------------------------------------------------------
 
@@ -159,6 +168,25 @@ CREATE TABLE `servico` (
 
 INSERT INTO `servico` (`servico_id`, `descricao`, `duracao`, `valor`, `ativo`) VALUES
 (1, 'MUITO RUIM', '17:26:10', 10.5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `nome` varchar(300) DEFAULT NULL,
+  `senha` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `nome`, `senha`) VALUES
+(1, 'Leandro', 'lele');
 
 --
 -- Índices para tabelas despejadas
@@ -206,6 +234,12 @@ ALTER TABLE `servico`
   ADD PRIMARY KEY (`servico_id`);
 
 --
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -219,31 +253,37 @@ ALTER TABLE `atendimento`
 -- AUTO_INCREMENT de tabela `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `cliente_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `cliente_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de tabela `dentista`
 --
 ALTER TABLE `dentista`
-  MODIFY `dentista_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `dentista_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `especialidade`
 --
 ALTER TABLE `especialidade`
-  MODIFY `especialidade_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `especialidade_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `funcionario_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `funcionario_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `servico`
 --
 ALTER TABLE `servico`
   MODIFY `servico_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restrições para tabelas despejadas
