@@ -14,27 +14,27 @@ public class funcionario {
         this.atendente_id = atendente_id;
     }
 
-    public String getFuncionario_nome() {
+    public String getNome() {
         return atendente_nome;
     }
 
-    public void setFuncionario_nome(String atendente_nome) {
+    public void setNome(String atendente_nome) {
         this.atendente_nome = atendente_nome;
     }
 
-    public String getFuncionario_ctps() {
+    public String getCtps() {
         return atendente_ctps;
     }
 
-    public void setFuncionario_ctps(String atendente_ctps) {
+    public void setCtps(String atendente_ctps) {
         this.atendente_ctps = atendente_ctps;
     }
 
-    public String getFuncionario_tel() {
+    public String getTelefone() {
         return atendente_tel;
     }
 
-    public void setFuncionario_tel(String atendente_tel) {
+    public void setTelefone(String atendente_tel) {
         this.atendente_tel = atendente_tel;
     }
 }

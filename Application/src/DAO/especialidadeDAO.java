@@ -19,8 +19,8 @@ public class especialidadeDAO {
         try {
             pstm = con.prepareStatement(sql);
 
-            pstm.setString(1, esp.getEspecialidade_nome());
-            pstm.setString(2, esp.getEspecialidade_desc());
+            pstm.setString(1, esp.getNome());
+            pstm.setString(2, esp.getDesc());
 
             pstm.execute();
             pstm.close();
@@ -45,8 +45,8 @@ public class especialidadeDAO {
             while(rs.next()){
                 especialidade esp = new especialidade();
                 esp.setEspecialidade_id(rs.getInt("especialidade_id"));
-                esp.setEspecialidade_nome(rs.getString("nome"));
-                esp.setEspecialidade_desc(rs.getString("descricao"));
+                esp.setNome(rs.getString("nome"));
+                esp.setDesc(rs.getString("descricao"));
                 
                 lista.add(esp);
             }
@@ -80,6 +80,25 @@ public class especialidadeDAO {
         } 
         catch(SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro, Não fo possivel atualizar os dados: \n"+ erro);
+        }
+    }
+    
+    public void atualizaDados(especialidade esp){
+        String sql= "UPDATE especialidade SET nome = ?, descricao = ? WHERE especialidade_id = ?";
+        con = new ConexaoDAO().conectaBD();
+        
+        try {
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setString(1, esp.getNome());
+            pstm.setString(2, esp.getDesc());
+            pstm.setInt(3, esp.getEspecialidade_id());
+            
+            pstm.execute();
+            pstm.close();
+        }
+        catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e.getMessage());
         }
     }
 }

@@ -14,27 +14,27 @@ public class servico {
         this.servico_id = servico_id;
     }
 
-    public String getServico_desc() {
+    public String getDesc() {
         return servico_desc;
     }
 
-    public void setServico_desc(String servico_desc) {
+    public void setDesc(String servico_desc) {
         this.servico_desc = servico_desc;
     }
 
-    public String getServico_duracao() {
+    public String getDuracao() {
         return servico_duracao;
     }
 
-    public void setServico_duracao(String servico_duracao) {
+    public void setDuracao(String servico_duracao) {
         this.servico_duracao = servico_duracao;
     }
 
-    public float getServico_valor() {
+    public float getValor() {
         return servico_valor;
     }
 
-    public void setServico_valor(float servico_valor) {
+    public void setValor(float servico_valor) {
         this.servico_valor = servico_valor;
     }
 }

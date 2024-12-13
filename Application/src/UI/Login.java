@@ -3,11 +3,18 @@ package UI;
 
 import javax.swing.JOptionPane;
 import DAO.*;
+import DTO.*;
+import java.awt.*;
+import java.sql.*;
 
 public class Login extends javax.swing.JFrame {
-
+    Background fundo;
+    
     public Login() {
         initComponents();
+        setLayout(new BorderLayout());
+        fundo = new Background("Image\\Fundo.jpg");
+        getContentPane().add(fundo);
     }
 
     @SuppressWarnings("unchecked")
@@ -21,10 +28,10 @@ public class Login extends javax.swing.JFrame {
         txtSenha = new javax.swing.JPasswordField();
         btnCad = new javax.swing.JButton();
         btnLogar = new javax.swing.JButton();
+        btnFechar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(500, 600));
-        setPreferredSize(new java.awt.Dimension(600, 500));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -37,11 +44,23 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setText("Senha");
 
         btnCad.setText("Cadastrar");
+        btnCad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadActionPerformed(evt);
+            }
+        });
 
         btnLogar.setText("Logar");
         btnLogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogarActionPerformed(evt);
+            }
+        });
+
+        btnFechar.setText("Fechar");
+        btnFechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFecharActionPerformed(evt);
             }
         });
 
@@ -63,8 +82,10 @@ public class Login extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(btnCad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(txtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(75, Short.MAX_VALUE))
@@ -85,42 +106,75 @@ public class Login extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCad, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnLogar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    Connection con;
+    
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
         if(txtNome.getText().isEmpty() || txtSenha.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Erro! AINDA HÁ ALGUM VAZIO");
         }
         else {
+            
+            
             UsuarioDAO Login = new UsuarioDAO();
             
-            /*  
-                
-                Usuario usr = new Usuario(txtNome.getText(), txtSenha.getText());
+            usuario usr = new usuario();
             
-                ResultSet res = Login.login(usr);
+            usr.setNome(txtNome.getText());
+            usr.setSenha(txtSenha.getText());
             
-                try{
-                    
-                    if(res.next())
-                        JOptionPane.showMessageDialog(null, "Logou");
-                    else
-                        JoptionPane.showMessageDialog(null, "Dados inválidos");
-                }catch(Exception e) {
-                    JOptionPane.showMessaegDialog(null, "Erro: "+ e.getMessage());
-                }
-                
-            */
+            ResultSet res = Login.login(usr);
             
-            JOptionPane.showMessageDialog(null, "ERRO LEANDRO BURRO, FALTOU TERMINAR O CÓDIGO, LEMBRA!? OLHA A LINHA 101 até a 117 DO 'Login.java'");
+            try{
+                if(res.next()){
+                    JOptionPane.showMessageDialog(null, "Logou");
+                    Gerenciamento oTela = new Gerenciamento();
+                    oTela.setVisible(true);
+
+                    dispose();
+                }else
+                    JOptionPane.showMessageDialog(null, "Dados inválidos");
+            }catch(Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro: "+ e.getMessage());
+            }
             
         }
     }//GEN-LAST:event_btnLogarActionPerformed
+
+    private void btnCadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadActionPerformed
+        if(txtNome.getText().isEmpty() || txtSenha.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Erro! AINDA HÁ ALGUM VAZIO");
+        }
+        else {
+            
+            
+            UsuarioDAO Cad = new UsuarioDAO();
+            
+            usuario usr = new usuario();
+            
+            usr.setNome(txtNome.getText());
+            usr.setSenha(txtSenha.getText());
+            
+           if(Cad.cadastro(usr)){
+               Gerenciamento oTela = new Gerenciamento();
+               oTela.setVisible(true);
+               dispose();
+           }
+               
+            
+        }
+    }//GEN-LAST:event_btnCadActionPerformed
+
+    private void btnFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFecharActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnFecharActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,6 +213,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCad;
+    private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnLogar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

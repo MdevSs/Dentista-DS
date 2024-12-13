@@ -17,9 +17,9 @@ public class funcionarioDAO {
         try {
             pstm = con.prepareStatement(sql);
 
-            pstm.setString(1, fun.getFuncionario_nome());
-            pstm.setString(2, fun.getFuncionario_ctps());
-            pstm.setString(3, fun.getFuncionario_tel());
+            pstm.setString(1, fun.getNome());
+            pstm.setString(2, fun.getCtps());
+            pstm.setString(3, fun.getTelefone());
 
             pstm.execute();
             pstm.close();
@@ -44,9 +44,9 @@ public class funcionarioDAO {
             while(rs.next()){
                 funcionario fun = new funcionario();
                 fun.setFuncionario_id(rs.getInt("funcionario_id"));
-                fun.setFuncionario_nome(rs.getString("nome"));
-                fun.setFuncionario_ctps(rs.getString("ctps"));
-                fun.setFuncionario_tel(rs.getString("telefone"));
+                fun.setNome(rs.getString("nome"));
+                fun.setCtps(rs.getString("ctps"));
+                fun.setTelefone(rs.getString("telefone"));
                 
                 
                 lista.add(fun);
@@ -83,5 +83,25 @@ public class funcionarioDAO {
             JOptionPane.showMessageDialog(null, "Erro, Não fo possivel atualizar os dados: \n"+ erro);
         }
         
+    }
+    
+    public void atualizaDados(funcionario fun){
+        String sql= "UPDATE funcionario SET nome = ?, ctps = ?, telefone = ? WHERE funcionario_id = ?";
+        con = new ConexaoDAO().conectaBD();
+        
+        try {
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setString(1, fun.getNome());
+            pstm.setString(2, fun.getCtps());
+            pstm.setString(3, fun.getTelefone());
+            pstm.setInt(4, fun.getFuncionario_id());
+            
+            pstm.execute();
+            pstm.close();
+        }
+        catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e.getMessage());
+        }
     }
 }

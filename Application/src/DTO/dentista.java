@@ -23,27 +23,27 @@ public class dentista {
         this.especialidade_id = especialidade_id;
     }
 
-    public String getDentista_nome() {
+    public String getNome() {
         return dentista_nome;
     }
 
-    public void setDentista_nome(String dentista_nome) {
+    public void setNome(String dentista_nome) {
         this.dentista_nome = dentista_nome;
     }
 
-    public String getDentista_cro() {
+    public String getCro() {
         return dentista_cro;
     }
 
-    public void setDentista_cro(String dentista_cro) {
+    public void setCro(String dentista_cro) {
         this.dentista_cro = dentista_cro;
     }
 
-    public String getDentista_tel() {
+    public String getTel() {
         return dentista_tel;
     }
 
-    public void setDentista_tel(String dentista_tel) {
+    public void setTel(String dentista_tel) {
         this.dentista_tel = dentista_tel;
     }
 }

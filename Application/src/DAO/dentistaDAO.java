@@ -20,9 +20,9 @@ public class dentistaDAO {
             pstm = con.prepareStatement(sql);
 
             pstm.setString(1, dent.getEspecialidade_id());
-            pstm.setString(2, dent.getDentista_nome());
-            pstm.setString(3, dent.getDentista_cro());
-            pstm.setString(4, dent.getDentista_tel());
+            pstm.setString(2, dent.getNome());
+            pstm.setString(3, dent.getCro());
+            pstm.setString(4, dent.getTel());
             
             pstm.execute();
             pstm.close();
@@ -37,7 +37,7 @@ public class dentistaDAO {
     public ArrayList<dentista> CarregaDentista(){
         con = new ConexaoDAO().conectaBD();
         
-        String sql = "SELECT d.dentista_id dentista_id , e.nome especialidade_id, d.nome nome, d.cro cro, d.telefone telefone FROM `dentista` AS d LEFT JOIN especialidade AS e ON e.especialidade_id = d.especialidade_id WHERE d.ativo = 1";
+        String sql = "SELECT d.dentista_id dentista_id , e.nome especialidade_id, d.nome nome, d.cro cro, d.telefone as 'telefone' FROM `dentista` AS d LEFT JOIN especialidade AS e ON e.especialidade_id = d.especialidade_id WHERE d.ativo = 1";
         
         try {
         
@@ -48,9 +48,9 @@ public class dentistaDAO {
                 dentista den = new dentista();
                 den.setDentista_id(rs.getInt("dentista_id"));
                 den.setEspecialidade_id(rs.getString("especialidade_id"));
-                den.setDentista_nome(rs.getString("nome"));
-                den.setDentista_cro(rs.getString("cro"));
-                den.setDentista_tel("telefone");
+                den.setNome(rs.getString("nome"));
+                den.setCro(rs.getString("cro"));
+                den.setTel(rs.getString("telefone"));
                 
                 
                 lista.add(den);
@@ -85,6 +85,27 @@ public class dentistaDAO {
         } 
         catch(SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro, Não fo possivel atualizar os dados: \n"+ erro);
+        }
+    }
+    
+    public void atualizaDados(dentista den){
+        String sql= "UPDATE dentista SET especialidade_id = (SELECT especialidade_id FROM especialidade WHERE nome = ?), nome = ?, cro = ?, telefone = ? WHERE dentista_id = ?";
+        con = new ConexaoDAO().conectaBD();
+        
+        try {
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setString(1, den.getEspecialidade_id());
+            pstm.setString(2, den.getNome());
+            pstm.setString(3, den.getCro());
+            pstm.setString(4, den.getTel());
+            pstm.setInt(5, den.getDentista_id());
+            
+            pstm.execute();
+            pstm.close();
+        }
+        catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e.getMessage());
         }
     }
 }

@@ -20,9 +20,9 @@ public class servicoDAO {
         try {
             pstm = con.prepareStatement(sql);
 
-            pstm.setString(1, ser.getServico_desc());
-            pstm.setString(2, ser.getServico_duracao());
-            pstm.setString(3, Double.toString(ser.getServico_valor()));
+            pstm.setString(1, ser.getDesc());
+            pstm.setString(2, ser.getDuracao());
+            pstm.setString(3, Double.toString(ser.getValor()));
 
             pstm.execute();
             pstm.close();
@@ -47,9 +47,9 @@ public class servicoDAO {
             while(rs.next()){
                 servico ser = new servico();
                 ser.setServico_id(rs.getInt("servico_id"));
-                ser.setServico_desc(rs.getString("descricao"));
-                ser.setServico_duracao(rs.getString("duracao"));
-                ser.setServico_valor(rs.getFloat("valor"));
+                ser.setDesc(rs.getString("descricao"));
+                ser.setDuracao(rs.getString("duracao"));
+                ser.setValor(rs.getFloat("valor"));
                 
                 lista.add(ser);
             }
@@ -85,4 +85,25 @@ public class servicoDAO {
             JOptionPane.showMessageDialog(null, "Erro, Não fo possivel atualizar os dados: \n"+ erro);
         }
     }
+    
+    public void atualizaDados(servico ser){
+        String sql= "UPDATE servico SET descricao = ?, duracao = ?, valor = ? WHERE servico_id = ?";
+        con = new ConexaoDAO().conectaBD();
+        
+        try {
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setString(1, ser.getDesc());
+            pstm.setString(2, ser.getDuracao());
+            pstm.setDouble(3, ser.getValor());
+            pstm.setInt(4, ser.getServico_id());
+            
+            pstm.execute();
+            pstm.close();
+        }
+        catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e.getMessage());
+        }
+    }
+    
 }

@@ -17,10 +17,10 @@ public class atendimentoDAO {
         try {
             pstm = con.prepareStatement(sql);
 
-            pstm.setString(1, ate.getDentista_id());
-            pstm.setString(2, ate.getCliente_id());
-            pstm.setString(3, ate.getServico_id());
-            pstm.setString(4, ate.getFuncionario_id());
+            pstm.setString(1, ate.getDentista());
+            pstm.setString(2, ate.getCliente());
+            pstm.setString(3, ate.getServico());
+            pstm.setString(4, ate.getFuncionario());
 
             pstm.execute();
             pstm.close();
@@ -45,10 +45,10 @@ public class atendimentoDAO {
             while(rs.next()){
                 atendimento ate = new atendimento();
                 ate.setAtendimento_id(rs.getInt("atendimento_id"));
-                ate.setDentista_id(rs.getString("dentista"));
-                ate.setCliente_id(rs.getString("cliente"));
-                ate.setServico_id(rs.getString("servico"));
-                ate.setFunctionario_id(rs.getString("funcionario"));
+                ate.setDentista(rs.getString("dentista"));
+                ate.setCliente(rs.getString("cliente"));
+                ate.setServico(rs.getString("servico"));
+                ate.setFuncionario(rs.getString("funcionario"));
                 ate.setData(rs.getString("data"));
                 
                 lista.add(ate);
@@ -83,6 +83,28 @@ public class atendimentoDAO {
         } 
         catch(SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro, Não fo possivel atualizar os dados: \n"+ erro);
+        }
+    }
+    
+    public void atualizaDados(atendimento ate){
+        String sql= "UPDATE atendimento SET dentista_id = (SELECT dentista_id FROM dentista WHERE nome = ?), cliente_id = (SELECT cliente_id FROM cliente WHERE nome = ?), servico_id = (SELECT servico_id FROM servico WHERE descricao = \"MUITO RUIM\"), funcionario_id = (SELECT funcionario_id FROM funcionario WHERE nome = ?), data = ? WHERE atendimento_id = ?";
+        con = new ConexaoDAO().conectaBD();
+        
+        try {
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setString(1, ate.getDentista());
+            pstm.setString(2, ate.getCliente());
+            pstm.setString(3, ate.getServico());
+            pstm.setString(4, ate.getFuncionario());
+            pstm.setString(5, ate.getData());
+            pstm.setInt(6, ate.getAtendimento_id());
+            
+            pstm.execute();
+            pstm.close();
+        }
+        catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e.getMessage());
         }
     }
 }

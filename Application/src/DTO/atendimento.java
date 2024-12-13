@@ -16,27 +16,27 @@ public class atendimento {
         this.atendimento_id = atendimento_id;
     }
 
-    public String getCliente_id() {
+    public String getCliente() {
         return cliente_id;
     }
 
-    public void setCliente_id(String cliente_id) {
+    public void setCliente(String cliente_id) {
         this.cliente_id = cliente_id;
     }
 
-    public String getDentista_id() {
+    public String getDentista() {
         return dentista_id;
     }
 
-    public void setDentista_id(String dentista_id) {
+    public void setDentista(String dentista_id) {
         this.dentista_id = dentista_id;
     }
 
-    public String getServico_id() {
+    public String getServico() {
         return servico_id;
     }
 
-    public void setServico_id(String servico_id) {
+    public void setServico(String servico_id) {
         this.servico_id = servico_id;
     }
 
@@ -48,11 +48,11 @@ public class atendimento {
         this.data = data;
     }
     
-    public String getFuncionario_id(){
+    public String getFuncionario(){
         return funcionario_id;
     }
     
-    public void setFunctionario_id(String funcionario_id) {
+    public void setFuncionario(String funcionario_id) {
         this.funcionario_id = funcionario_id;
     }
 }

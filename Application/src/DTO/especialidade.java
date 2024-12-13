@@ -13,19 +13,19 @@ public class especialidade {
         this.especialidade_id = especialidade_id;
     }
 
-    public String getEspecialidade_nome() {
+    public String getNome() {
         return especialidade_nome;
     }
 
-    public void setEspecialidade_nome(String especialidade_nome) {
+    public void setNome(String especialidade_nome) {
         this.especialidade_nome = especialidade_nome;
     }
 
-    public String getEspecialidade_desc() {
+    public String getDesc() {
         return especialidade_desc;
     }
 
-    public void setEspecialidade_desc(String especialidade_desc) {
+    public void setDesc(String especialidade_desc) {
         this.especialidade_desc = especialidade_desc;
     }
 }

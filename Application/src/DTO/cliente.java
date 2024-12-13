@@ -19,67 +19,67 @@ public class cliente {
         this.cliente_id = cliente_id;
     }
 
-    public String getCliente_nome() {
+    public String getNome() {
         return cliente_nome;
     }
 
-    public void setCliente_nome(String cliente_nome) {
+    public void setNome(String cliente_nome) {
         this.cliente_nome = cliente_nome;
     }
 
-    public String getCliente_cpf() {
+    public String getCpf() {
         return cliente_cpf;
     }
 
-    public void setCliente_cpf(String cliente_cpf) {
+    public void setCpf(String cliente_cpf) {
         this.cliente_cpf = cliente_cpf;
     }
 
-    public String getCliente_email() {
+    public String getEmail() {
         return cliente_email;
     }
 
-    public void setCliente_email(String cliente_email) {
+    public void setEmail(String cliente_email) {
         this.cliente_email = cliente_email;
     }
 
-    public String getCliente_numero() {
+    public String getNumero() {
         return cliente_numero;
     }
 
-    public void setCliente_numero(String cliente_numero) {
+    public void setNumero(String cliente_numero) {
         this.cliente_numero = cliente_numero;
     }
 
-    public String getCliente_rua() {
+    public String getRua() {
         return cliente_rua;
     }
 
-    public void setCliente_rua(String cliente_rua) {
+    public void setRua(String cliente_rua) {
         this.cliente_rua = cliente_rua;
     }
 
-    public String getCliente_bairro() {
+    public String getBairro() {
         return cliente_bairro;
     }
 
-    public void setCliente_bairro(String cliente_bairro) {
+    public void setBairro(String cliente_bairro) {
         this.cliente_bairro = cliente_bairro;
     }
 
-    public String getCliente_cidade() {
+    public String getCidade() {
         return cliente_cidade;
     }
 
-    public void setCliente_cidade(String cliente_cidade) {
+    public void setCidade(String cliente_cidade) {
         this.cliente_cidade = cliente_cidade;
     }
 
-    public String getCliente_estado() {
+    public String getEstado() {
         return cliente_estado;
     }
 
-    public void setCliente_estado(String cliente_estado) {
+    public void setEstado(String cliente_estado) {
         this.cliente_estado = cliente_estado;
     }
 }

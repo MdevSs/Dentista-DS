@@ -17,14 +17,14 @@ public class clienteDAO {
         try {
             pstm = con.prepareStatement(sql);
 
-            pstm.setString(1, cli.getCliente_nome());
-            pstm.setString(2, cli.getCliente_cpf());
-            pstm.setString(3, cli.getCliente_email());
-            pstm.setString(4, cli.getCliente_numero());
-            pstm.setString(5, cli.getCliente_rua());
-            pstm.setString(6, cli.getCliente_bairro());
-            pstm.setString(7, cli.getCliente_cidade());
-            pstm.setString(8, cli.getCliente_estado());  
+            pstm.setString(1, cli.getNome());
+            pstm.setString(2, cli.getCpf());
+            pstm.setString(3, cli.getEmail());
+            pstm.setString(4, cli.getNumero());
+            pstm.setString(5, cli.getRua());
+            pstm.setString(6, cli.getBairro());
+            pstm.setString(7, cli.getCidade());
+            pstm.setString(8, cli.getEstado());  
 
             pstm.execute();
             pstm.close();
@@ -49,14 +49,14 @@ public class clienteDAO {
             while(rs.next()){
                 cliente cli = new cliente();
                 cli.setCliente_id(rs.getInt("cliente_id"));
-                cli.setCliente_nome(rs.getString("nome"));
-                cli.setCliente_cpf(rs.getString("cpf"));
-                cli.setCliente_email(rs.getString("email"));
-                cli.setCliente_numero(rs.getString("numero"));
-                cli.setCliente_rua(rs.getString("rua"));
-                cli.setCliente_bairro(rs.getString("bairro"));
-                cli.setCliente_cidade(rs.getString("cidade"));
-                cli.setCliente_estado(rs.getString("estado"));
+                cli.setNome(rs.getString("nome"));
+                cli.setCpf(rs.getString("cpf"));
+                cli.setEmail(rs.getString("email"));
+                cli.setNumero(rs.getString("numero"));
+                cli.setRua(rs.getString("rua"));
+                cli.setBairro(rs.getString("bairro"));
+                cli.setCidade(rs.getString("cidade"));
+                cli.setEstado(rs.getString("estado"));
                 
                 lista.add(cli);
             }
@@ -92,5 +92,30 @@ public class clienteDAO {
             JOptionPane.showMessageDialog(null, "Erro, Não fo possivel atualizar os dados: \n"+ erro);
         }
         
+    }
+
+    public void atualizaDados(cliente cli) {
+        String sql= "UPDATE cliente SET nome = ?, cpf = ?, email = ?, numero = ?, rua = ?, bairro = ?, cidade = ?, estado = ? WHERE cliente_id = ?";
+        con = new ConexaoDAO().conectaBD();
+        
+        try {
+            pstm = con.prepareStatement(sql);
+            
+            pstm.setString(1, cli.getNome());
+            pstm.setString(2, cli.getCpf());
+            pstm.setString(3, cli.getEmail());
+            pstm.setString(4, cli.getNumero());
+            pstm.setString(5, cli.getRua());
+            pstm.setString(6, cli.getBairro());
+            pstm.setString(7, cli.getCidade());
+            pstm.setString(8, cli.getEstado());
+            pstm.setInt(9, cli.getCliente_id());
+            
+            pstm.execute();
+            pstm.close();
+        }
+        catch(SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e.getMessage());
+        }
     }
 }

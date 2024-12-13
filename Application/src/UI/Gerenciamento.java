@@ -2,6 +2,7 @@ package UI;
 
 import DAO.*;
 import DTO.*;
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import java.sql.*;
@@ -10,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 public class Gerenciamento extends javax.swing.JFrame {
     public Gerenciamento() {
         initComponents();
-        
+        carregarTabelas();
     }
 
     @SuppressWarnings("unchecked")
@@ -41,6 +42,7 @@ public class Gerenciamento extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         cli_table = new javax.swing.JTable();
         cli_carregar = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
         funcionario = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         fun_nome = new javax.swing.JTextField();
@@ -54,6 +56,7 @@ public class Gerenciamento extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         fun_table = new javax.swing.JTable();
         fun_carregar = new javax.swing.JButton();
+        jLabel28 = new javax.swing.JLabel();
         especialidade = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         esp_nome = new javax.swing.JTextField();
@@ -65,6 +68,7 @@ public class Gerenciamento extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         esp_table = new javax.swing.JTable();
         esp_carregar = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
         dentista = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         den_nome = new javax.swing.JTextField();
@@ -80,6 +84,7 @@ public class Gerenciamento extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         den_table = new javax.swing.JTable();
         den_carregar = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
         servico = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         ser_descricao = new javax.swing.JTextField();
@@ -93,9 +98,10 @@ public class Gerenciamento extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         ser_table = new javax.swing.JTable();
         ser_carregar = new javax.swing.JButton();
+        jLabel26 = new javax.swing.JLabel();
         atendimento = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
-        cli_nome1 = new javax.swing.JTextField();
+        ate_data = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
         ate_dentista = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
@@ -110,10 +116,10 @@ public class Gerenciamento extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         ate_table = new javax.swing.JTable();
         ate_carregar = new javax.swing.JButton();
+        jLabel31 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 700));
-        setPreferredSize(new java.awt.Dimension(800, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -199,6 +205,11 @@ public class Gerenciamento extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        cli_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cli_tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(cli_table);
 
         cli_carregar.setText("CARREGAR");
@@ -207,6 +218,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                 cli_carregarActionPerformed(evt);
             }
         });
+
+        jLabel27.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel27.setText("Clique duas vezes no registro para modifica-lo");
 
         javax.swing.GroupLayout clienteLayout = new javax.swing.GroupLayout(cliente);
         cliente.setLayout(clienteLayout);
@@ -233,20 +247,25 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel1))
                 .addGroup(clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(clienteLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clienteLayout.createSequentialGroup()
                         .addGap(0, 100, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clienteLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cli_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cli_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(cli_remover)
-                        .addGap(18, 18, 18)
-                        .addComponent(cli_carregar)
-                        .addGap(140, 140, 140))))
+                        .addGroup(clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clienteLayout.createSequentialGroup()
+                                .addComponent(cli_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cli_atualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cli_remover)
+                                .addGap(18, 18, 18)
+                                .addComponent(cli_carregar)
+                                .addGap(140, 140, 140))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clienteLayout.createSequentialGroup()
+                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47))))))
         );
         clienteLayout.setVerticalGroup(
             clienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,8 +309,11 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cli_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
+                    .addGroup(clienteLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel27)))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Cliente", cliente);
@@ -319,6 +341,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         });
 
         fun_atualizar.setText("ATUALIZAR");
+        fun_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fun_atualizarActionPerformed(evt);
+            }
+        });
 
         fun_REMOVER.setText("REMOVER");
         fun_REMOVER.addActionListener(new java.awt.event.ActionListener() {
@@ -345,6 +372,11 @@ public class Gerenciamento extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        fun_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fun_tableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(fun_table);
 
         fun_carregar.setText("CARREGAR");
@@ -353,6 +385,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                 fun_carregarActionPerformed(evt);
             }
         });
+
+        jLabel28.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel28.setText("Clique duas vezes no registro para modifica-lo");
 
         javax.swing.GroupLayout funcionarioLayout = new javax.swing.GroupLayout(funcionario);
         funcionario.setLayout(funcionarioLayout);
@@ -369,10 +404,6 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(fun_ctps, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel13))
                 .addGroup(funcionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(funcionarioLayout.createSequentialGroup()
-                        .addGap(0, 100, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, funcionarioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(fun_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -382,7 +413,15 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(fun_REMOVER)
                         .addGap(18, 18, 18)
                         .addComponent(fun_carregar)
-                        .addGap(130, 130, 130))))
+                        .addGap(130, 130, 130))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, funcionarioLayout.createSequentialGroup()
+                        .addGap(0, 100, Short.MAX_VALUE)
+                        .addGroup(funcionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(funcionarioLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56))))
         );
         funcionarioLayout.setVerticalGroup(
             funcionarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,10 +446,12 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(fun_telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel28)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Atendente", funcionario);
+        jTabbedPane1.addTab("Funcionario", funcionario);
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel16.setText("Nome");
@@ -423,8 +464,18 @@ public class Gerenciamento extends javax.swing.JFrame {
         esp_descricao.setMinimumSize(new java.awt.Dimension(200, 40));
 
         esp_cadastrar.setText("CADASTRAR");
+        esp_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esp_cadastrarActionPerformed(evt);
+            }
+        });
 
         esp_atualizar.setText("ATUALIZAR");
+        esp_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                esp_atualizarActionPerformed(evt);
+            }
+        });
 
         esp_remover.setText("REMOVER");
         esp_remover.addActionListener(new java.awt.event.ActionListener() {
@@ -451,6 +502,11 @@ public class Gerenciamento extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        esp_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                esp_tableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(esp_table);
 
         esp_carregar.setText("CARREGAR");
@@ -459,6 +515,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                 esp_carregarActionPerformed(evt);
             }
         });
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel29.setText("Clique duas vezes no registro para modifica-lo");
 
         javax.swing.GroupLayout especialidadeLayout = new javax.swing.GroupLayout(especialidade);
         especialidade.setLayout(especialidadeLayout);
@@ -472,10 +531,6 @@ public class Gerenciamento extends javax.swing.JFrame {
                     .addComponent(esp_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addGroup(especialidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(especialidadeLayout.createSequentialGroup()
-                        .addGap(0, 100, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, especialidadeLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(esp_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -485,7 +540,15 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(esp_remover)
                         .addGap(18, 18, 18)
                         .addComponent(esp_carregar)
-                        .addGap(138, 138, 138))))
+                        .addGap(138, 138, 138))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, especialidadeLayout.createSequentialGroup()
+                        .addGap(0, 100, Short.MAX_VALUE)
+                        .addGroup(especialidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(especialidadeLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56))))
         );
         especialidadeLayout.setVerticalGroup(
             especialidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,7 +569,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(esp_descricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel29)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Especialidade", especialidade);
@@ -539,6 +604,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         });
 
         den_atualizar.setText("ATUALIZAR");
+        den_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                den_atualizarActionPerformed(evt);
+            }
+        });
 
         den_remover.setText("REMOVER");
         den_remover.addActionListener(new java.awt.event.ActionListener() {
@@ -554,7 +624,7 @@ public class Gerenciamento extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "id", "especialidade", "nome", "cro", "telefone"
+                "id", "nome", "cro", "telefone", "especialidade"
             }
         ) {
             Class[] types = new Class [] {
@@ -565,6 +635,11 @@ public class Gerenciamento extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        den_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                den_tableMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(den_table);
 
         den_carregar.setText("CARREGAR");
@@ -573,6 +648,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                 den_carregarActionPerformed(evt);
             }
         });
+
+        jLabel30.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel30.setText("Clique duas vezes no registro para modifica-lo");
 
         javax.swing.GroupLayout dentistaLayout = new javax.swing.GroupLayout(dentista);
         dentista.setLayout(dentistaLayout);
@@ -591,10 +669,6 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(jLabel20)
                         .addComponent(den_especialidade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(dentistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(dentistaLayout.createSequentialGroup()
-                        .addGap(0, 100, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dentistaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(den_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -604,7 +678,15 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(den_remover)
                         .addGap(18, 18, 18)
                         .addComponent(den_carregar)
-                        .addGap(131, 131, 131))))
+                        .addGap(131, 131, 131))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dentistaLayout.createSequentialGroup()
+                        .addGap(0, 100, Short.MAX_VALUE)
+                        .addGroup(dentistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dentistaLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56))))
         );
         dentistaLayout.setVerticalGroup(
             dentistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -633,7 +715,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(den_especialidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel30)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Dentista", dentista);
@@ -661,6 +745,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         });
 
         ser_atualizar.setText("ATUALIZAR");
+        ser_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ser_atualizarActionPerformed(evt);
+            }
+        });
 
         ser_remover.setText("REMOVER");
         ser_remover.addActionListener(new java.awt.event.ActionListener() {
@@ -687,6 +776,11 @@ public class Gerenciamento extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        ser_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ser_tableMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(ser_table);
 
         ser_carregar.setText("CARREGAR");
@@ -695,6 +789,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                 ser_carregarActionPerformed(evt);
             }
         });
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel26.setText("Clique duas vezes no registro para modifica-lo");
 
         javax.swing.GroupLayout servicoLayout = new javax.swing.GroupLayout(servico);
         servico.setLayout(servicoLayout);
@@ -711,10 +808,6 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(ser_duracao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel12))
                 .addGroup(servicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(servicoLayout.createSequentialGroup()
-                        .addGap(0, 100, Short.MAX_VALUE)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, servicoLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(ser_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -724,7 +817,15 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(ser_remover)
                         .addGap(18, 18, 18)
                         .addComponent(ser_carregar)
-                        .addGap(117, 117, 117))))
+                        .addGap(117, 117, 117))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, servicoLayout.createSequentialGroup()
+                        .addGap(0, 100, Short.MAX_VALUE)
+                        .addGroup(servicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(servicoLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56))))
         );
         servicoLayout.setVerticalGroup(
             servicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -749,7 +850,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ser_valor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel26)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Serviço", servico);
@@ -757,7 +860,7 @@ public class Gerenciamento extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel21.setText("Data e hora");
 
-        cli_nome1.setMinimumSize(new java.awt.Dimension(200, 40));
+        ate_data.setMinimumSize(new java.awt.Dimension(200, 40));
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel22.setText("Dentista");
@@ -792,6 +895,11 @@ public class Gerenciamento extends javax.swing.JFrame {
         });
 
         ate_atualizar.setText("ATUALIZAR");
+        ate_atualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ate_atualizarActionPerformed(evt);
+            }
+        });
 
         ate_remover.setText("REMOVER");
         ate_remover.addActionListener(new java.awt.event.ActionListener() {
@@ -818,6 +926,11 @@ public class Gerenciamento extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        ate_table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ate_tableMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(ate_table);
 
         ate_carregar.setText("CARREGAR");
@@ -827,11 +940,14 @@ public class Gerenciamento extends javax.swing.JFrame {
             }
         });
 
+        jLabel31.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel31.setText("Clique duas vezes no registro para modifica-lo");
+
         javax.swing.GroupLayout atendimentoLayout = new javax.swing.GroupLayout(atendimento);
         atendimento.setLayout(atendimentoLayout);
         atendimentoLayout.setHorizontalGroup(
             atendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(atendimentoLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, atendimentoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(atendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(atendimentoLayout.createSequentialGroup()
@@ -840,7 +956,7 @@ public class Gerenciamento extends javax.swing.JFrame {
                             .addComponent(jLabel22)
                             .addGroup(atendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(ate_dentista, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cli_nome1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                                .addComponent(ate_data, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(atendimentoLayout.createSequentialGroup()
                         .addGroup(atendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -852,6 +968,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                             .addComponent(ate_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)))
                 .addGroup(atendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(atendimentoLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(atendimentoLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
@@ -862,7 +981,7 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addComponent(ate_remover)
                         .addGap(18, 18, 18)
                         .addComponent(ate_carregar)))
-                .addGap(62, 62, 62))
+                .addGap(56, 56, 56))
         );
         atendimentoLayout.setVerticalGroup(
             atendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -877,7 +996,7 @@ public class Gerenciamento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(atendimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(atendimentoLayout.createSequentialGroup()
-                        .addComponent(cli_nome1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ate_data, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -895,7 +1014,9 @@ public class Gerenciamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(ate_funcionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel31)
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Atendimento", atendimento);
@@ -918,6 +1039,208 @@ public class Gerenciamento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public int Cliente_id;
+    public int Funcionario_id;
+    public int Especialidade_id;
+    public int Dentista_id;
+    public int Servico_id;
+    public int Atendimento_id;
+    
+    private void carregarTabelas(){
+        listaCliente();
+        listaFuncionario();
+        listaEspecialidade();
+        listaDentista();
+        listaServico();
+        listaAtendimento();
+    }
+    
+    private void listaCliente(){
+        try {
+            clienteDAO dados = new clienteDAO();
+            cli_table.removeAll();
+            DefaultTableModel model = (DefaultTableModel)cli_table.getModel();
+            model.setNumRows(0);
+        
+            ArrayList<cliente> lista = dados.CarregaCliente();
+            
+            for(int num=0;num < lista.size();num++) {
+                model.addRow(new Object[]{
+                    lista.get(num).getCliente_id(),
+                    lista.get(num).getNome(),
+                    lista.get(num).getCpf(),
+                    lista.get(num).getEmail(),
+                    lista.get(num).getNumero(),
+                    lista.get(num).getRua(),
+                    lista.get(num).getBairro(),
+                    lista.get(num).getCidade(),
+                    lista.get(num).getEstado()
+                
+                });
+            }
+            
+            if(model.getRowCount()<= 0){
+                JOptionPane.showMessageDialog(null, "Não há registrosde Clientes");
+            }
+                
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
+        }
+    }
+    
+    private void listaFuncionario(){
+        try {
+            funcionarioDAO dados = new funcionarioDAO();
+            fun_table.removeAll();
+            
+            DefaultTableModel model = (DefaultTableModel)fun_table.getModel();
+            model.setNumRows(0);
+        
+            ArrayList<funcionario> lista = dados.CarregaFuncionario();
+            
+            for(int num=0;num < lista.size();num++) {
+                model.addRow(new Object[]{
+                    lista.get(num).getFuncionario_id(),
+                    lista.get(num).getNome(),
+                    lista.get(num).getCtps(),
+                    lista.get(num).getTelefone(),
+                
+                });
+            }
+            
+            if(model.getRowCount()<= 0){
+                JOptionPane.showMessageDialog(null, "Não há registros de Funcionários");
+            }
+                
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
+        }
+    }
+    
+    private void listaEspecialidade(){
+        try {
+            especialidadeDAO dados = new especialidadeDAO();
+            esp_table.removeAll();
+            DefaultTableModel model = (DefaultTableModel)esp_table.getModel();
+            model.setNumRows(0);
+        
+            ArrayList<especialidade> lista = dados.CarregaEspecialidade();
+            
+            for(int num=0;num < lista.size();num++) {
+                model.addRow(new Object[]{
+                    lista.get(num).getEspecialidade_id(),
+                    lista.get(num).getNome(),
+                    lista.get(num).getDesc(),
+                    
+                
+                });
+            }
+            
+            if(model.getRowCount()<= 0){
+                JOptionPane.showMessageDialog(null, "Não há registrosde Especialidades");
+            }
+                
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
+        }
+    }
+    
+    private void listaDentista(){
+        try {
+            dentistaDAO dados = new dentistaDAO();
+            den_table.removeAll();
+            DefaultTableModel model = (DefaultTableModel)den_table.getModel();
+            model.setNumRows(0);
+        
+            ArrayList<dentista> lista = dados.CarregaDentista();
+            
+            for(int num=0;num < lista.size();num++) {
+                model.addRow(new Object[]{            
+                    lista.get(num).getDentista_id(),
+                    lista.get(num).getNome(),
+                    lista.get(num).getCro(),
+                    lista.get(num).getTel(),
+                    lista.get(num).getEspecialidade_id()
+                
+                });
+            }
+            
+            if(model.getRowCount()<= 0){
+                JOptionPane.showMessageDialog(null, "Não há registros de Dentistas");
+            }
+                
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
+        }
+    }
+    
+    private void listaServico(){
+        try {
+            servicoDAO dados = new servicoDAO();
+            ser_table.removeAll();
+            DefaultTableModel model = (DefaultTableModel)ser_table.getModel();
+            model.setNumRows(0);
+        
+            ArrayList<servico> lista = dados.CarregaServico();
+            
+            for(int num=0;num < lista.size();num++) {
+                model.addRow(new Object[]{
+                    lista.get(num).getServico_id(),
+                    lista.get(num).getDesc(),
+                    lista.get(num).getDuracao(),
+                    lista.get(num).getValor()
+                    
+                
+                });
+            }
+            
+            if(model.getRowCount()<= 0){
+                JOptionPane.showMessageDialog(null, "Não há registros de Serviços");
+            }
+                
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
+        }
+    }
+    
+    private void listaAtendimento(){
+        try {
+            atendimentoDAO dados = new atendimentoDAO();
+            ate_table.removeAll();
+            DefaultTableModel model = (DefaultTableModel)ate_table.getModel();
+            model.setNumRows(0);
+        
+            ArrayList<atendimento> lista = dados.CarregaAtendimento();
+            
+            for(int num=0;num < lista.size();num++) {
+                model.addRow(new Object[]{
+                    lista.get(num).getAtendimento_id(),
+                    lista.get(num).getDentista(),
+                    lista.get(num).getCliente(),
+                    lista.get(num).getServico(),
+                    lista.get(num).getFuncionario(),
+                    lista.get(num).getData()
+                    
+                
+                });
+                
+            }
+            
+            if(model.getRowCount()<= 0){
+                JOptionPane.showMessageDialog(null, "Não há registros de Atendimentos");
+            }
+                
+        }
+        catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
+        }
+    }
+    
     private void ate_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ate_cadastrarActionPerformed
 
         //JOptionPane.showMessageDialog(null, ate_dentista.getSelectedItem().toString()+"\n\n"+ate_cliente.getSelectedItem()+"\n\n"+ate_servico.getSelectedItem()+"\n\n"+ate_funcionario.getSelectedItem());
@@ -928,13 +1251,16 @@ public class Gerenciamento extends javax.swing.JFrame {
             atendimento ate = new atendimento();
             atendimentoDAO insert = new atendimentoDAO();
 
-            ate.setDentista_id(ate_dentista.getSelectedItem().toString());
-            ate.setCliente_id(ate_cliente.getSelectedItem().toString());
-            ate.setServico_id(ate_servico.getSelectedItem().toString());
-            ate.setFunctionario_id(ate_funcionario.getSelectedItem().toString());
+            ate.setDentista(ate_dentista.getSelectedItem().toString());
+            ate.setCliente(ate_cliente.getSelectedItem().toString());
+            ate.setServico(ate_servico.getSelectedItem().toString());
+            ate.setFuncionario(ate_funcionario.getSelectedItem().toString());
 
             insert.cadastro(ate);
         }
+        
+        carregaFKs();
+        carregarTabelas();
     }//GEN-LAST:event_ate_cadastrarActionPerformed
 
     private void ate_dentistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ate_dentistaActionPerformed
@@ -949,12 +1275,14 @@ public class Gerenciamento extends javax.swing.JFrame {
             servico ser = new servico();
             servicoDAO insert = new servicoDAO();
 
-            ser.setServico_desc(ser_descricao.getText());
-            ser.setServico_duracao(ser_duracao.getText());
-            ser.setServico_valor(Float.parseFloat(ser_valor.getText()));
+            ser.setDesc(ser_descricao.getText());
+            ser.setDuracao(ser_duracao.getText());
+            ser.setValor(Float.parseFloat(ser_valor.getText()));
 
             insert.cadastro(ser);
         }
+        carregaFKs();
+        carregarTabelas();
     }//GEN-LAST:event_ser_cadastrarActionPerformed
 
     private void fun_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fun_cadastrarActionPerformed
@@ -965,126 +1293,53 @@ public class Gerenciamento extends javax.swing.JFrame {
             funcionario fun = new funcionario();
             funcionarioDAO insert = new funcionarioDAO();
 
-            fun.setFuncionario_nome(fun_nome.getText());
-            fun.setFuncionario_ctps(fun_ctps.getText());
-            fun.setFuncionario_tel(fun_telefone.getText());
+            fun.setNome(fun_nome.getText());
+            fun.setCtps(fun_ctps.getText());
+            fun.setTelefone(fun_telefone.getText());
 
             insert.cadastro(fun);
             
         }
+        carregaFKs();
+        carregarTabelas();
     }//GEN-LAST:event_fun_cadastrarActionPerformed
 
     private void cli_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cli_cadastrarActionPerformed
-        if(cli_nome.getText().isEmpty() || cli_cpf.getText().isEmpty() || cli_email.getText().isEmpty() || cli_numero.getText().isEmpty() || cli_rua.getText().isEmpty() || cli_bairro.getText().isEmpty() || cli_cidade.getText().isEmpty() || cli_estado.getText().isEmpty()) {
+        
+        if(cli_nome.getText().isEmpty() || cli_cpf.getText().isEmpty() || cli_email.getText().isEmpty() || cli_numero.getText().isEmpty() || cli_rua.getText().isEmpty() || cli_bairro.getText().isEmpty() || cli_cidade.getText().isEmpty() || cli_estado.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
-        }
-        else {
+        } else {
             cliente cli = new cliente();
             clienteDAO insert = new clienteDAO();
+            
 
-            cli.setCliente_nome(cli_nome.getText());
-            cli.setCliente_cpf(cli_cpf.getText());
-            cli.setCliente_email(cli_email.getText());
-            cli.setCliente_numero(cli_numero.getText());
-            cli.setCliente_rua(cli_rua.getText());
-            cli.setCliente_bairro(cli_bairro.getText());
-            cli.setCliente_cidade(cli_cidade.getText());
-            cli.setCliente_estado(cli_estado.getText());
+            cli.setNome(cli_nome.getText());
+            cli.setCpf(cli_cpf.getText());
+            cli.setEmail(cli_email.getText());
+            cli.setNumero(cli_numero.getText());
+            cli.setRua(cli_rua.getText());
+            cli.setBairro(cli_bairro.getText());
+            cli.setCidade(cli_cidade.getText());
+            cli.setEstado(cli_estado.getText());
 
             insert.cadastro(cli);
+            
         }
+        carregaFKs();
+        carregarTabelas();
     }//GEN-LAST:event_cli_cadastrarActionPerformed
 
     private void cli_carregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cli_carregarActionPerformed
-        try {
-            clienteDAO dados = new clienteDAO();
-            DefaultTableModel model = (DefaultTableModel)cli_table.getModel();
-            model.setNumRows(0);
-        
-            ArrayList<cliente> lista = dados.CarregaCliente();
-            
-            for(int num=0;num < lista.size();num++) {
-                model.addRow(new Object[]{
-                    lista.get(num).getCliente_id(),
-                    lista.get(num).getCliente_nome(),
-                    lista.get(num).getCliente_cpf(),
-                    lista.get(num).getCliente_email(),
-                    lista.get(num).getCliente_numero(),
-                    lista.get(num).getCliente_rua(),
-                    lista.get(num).getCliente_bairro(),
-                    lista.get(num).getCliente_cidade(),
-                    lista.get(num).getCliente_estado()
-                
-                });
-            }
-            
-            if(model.getRowCount()<= 0){
-                JOptionPane.showMessageDialog(null, "Não há registros");
-            }
-                
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
-        }
-        
+        listaCliente();
+       
     }//GEN-LAST:event_cli_carregarActionPerformed
 
     private void fun_carregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fun_carregarActionPerformed
-        try {
-            funcionarioDAO dados = new funcionarioDAO();
-            DefaultTableModel model = (DefaultTableModel)fun_table.getModel();
-            model.setNumRows(0);
-        
-            ArrayList<funcionario> lista = dados.CarregaFuncionario();
-            
-            for(int num=0;num < lista.size();num++) {
-                model.addRow(new Object[]{
-                    lista.get(num).getFuncionario_id(),
-                    lista.get(num).getFuncionario_nome(),
-                    lista.get(num).getFuncionario_ctps(),
-                    lista.get(num).getFuncionario_tel(),
-                
-                });
-            }
-            
-            if(model.getRowCount()<= 0){
-                JOptionPane.showMessageDialog(null, "Não há registros");
-            }
-                
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
-        }
-        
+        listaFuncionario();
     }//GEN-LAST:event_fun_carregarActionPerformed
 
     private void esp_carregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esp_carregarActionPerformed
-        try {
-            especialidadeDAO dados = new especialidadeDAO();
-            DefaultTableModel model = (DefaultTableModel)esp_table.getModel();
-            model.setNumRows(0);
-        
-            ArrayList<especialidade> lista = dados.CarregaEspecialidade();
-            
-            for(int num=0;num < lista.size();num++) {
-                model.addRow(new Object[]{
-                    lista.get(num).getEspecialidade_id(),
-                    lista.get(num).getEspecialidade_nome(),
-                    lista.get(num).getEspecialidade_desc(),
-                    
-                
-                });
-            }
-            
-            if(model.getRowCount()<= 0){
-                JOptionPane.showMessageDialog(null, "Não há registros");
-            }
-                
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
-        }
-        
+        listaEspecialidade();
     }//GEN-LAST:event_esp_carregarActionPerformed
 
     private void den_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_den_cadastrarActionPerformed
@@ -1096,111 +1351,39 @@ public class Gerenciamento extends javax.swing.JFrame {
             dentistaDAO insert = new dentistaDAO();
 
             den.setEspecialidade_id(den_especialidade.getSelectedItem().toString());
-            den.setDentista_nome(den_nome.getText());
-            den.setDentista_cro(den_cro.getText());
-            den.setDentista_tel(den_telefone.getText());
+            den.setNome(den_nome.getText());
+            den.setCro(den_cro.getText());
+            den.setTel(den_telefone.getText());
          
             insert.cadastro(den);
         }
+        carregaFKs();
+        carregarTabelas();
     }//GEN-LAST:event_den_cadastrarActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void carregaFKs(){
         carregaDentista_Especialidade();
         carregaAtendimento_Dentista();
         carregaAtendimento_Cliente();
         carregaAtendimento_Servico();
         carregaAtendimento_Funcionario();
+    }
+    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        carregaFKs();
     }//GEN-LAST:event_formWindowOpened
 
     private void den_carregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_den_carregarActionPerformed
-        try {
-            dentistaDAO dados = new dentistaDAO();
-            DefaultTableModel model = (DefaultTableModel)den_table.getModel();
-            model.setNumRows(0);
-        
-            ArrayList<dentista> lista = dados.CarregaDentista();
-            
-            for(int num=0;num < lista.size();num++) {
-                model.addRow(new Object[]{
-                    lista.get(num).getDentista_id(),
-                    lista.get(num).getEspecialidade_id(),
-                    lista.get(num).getDentista_nome(),
-                    lista.get(num).getDentista_cro(),
-                    lista.get(num).getDentista_tel()
-                    
-                
-                });
-            }
-            
-            if(model.getRowCount()<= 0){
-                JOptionPane.showMessageDialog(null, "Não há registros");
-            }
-                
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
-        }
+        listaDentista();
     }//GEN-LAST:event_den_carregarActionPerformed
 
     private void ser_carregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ser_carregarActionPerformed
-        try {
-            servicoDAO dados = new servicoDAO();
-            DefaultTableModel model = (DefaultTableModel)ser_table.getModel();
-            model.setNumRows(0);
         
-            ArrayList<servico> lista = dados.CarregaServico();
-            
-            for(int num=0;num < lista.size();num++) {
-                model.addRow(new Object[]{
-                    lista.get(num).getServico_id(),
-                    lista.get(num).getServico_desc(),
-                    lista.get(num).getServico_duracao(),
-                    lista.get(num).getServico_valor()
-                    
-                
-                });
-            }
-            
-            if(model.getRowCount()<= 0){
-                JOptionPane.showMessageDialog(null, "Não há registros");
-            }
-                
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
-        }
+        listaServico();
     }//GEN-LAST:event_ser_carregarActionPerformed
 
     private void ate_carregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ate_carregarActionPerformed
-        try {
-            atendimentoDAO dados = new atendimentoDAO();
-            DefaultTableModel model = (DefaultTableModel)ate_table.getModel();
-            model.setNumRows(0);
-        
-            ArrayList<atendimento> lista = dados.CarregaAtendimento();
-            
-            for(int num=0;num < lista.size();num++) {
-                model.addRow(new Object[]{
-                    lista.get(num).getAtendimento_id(),
-                    lista.get(num).getDentista_id(),
-                    lista.get(num).getCliente_id(),
-                    lista.get(num).getServico_id(),
-                    lista.get(num).getFuncionario_id(),
-                    lista.get(num).getData()
-                    
-                
-                });
-                
-            }
-            
-            if(model.getRowCount()<= 0){
-                JOptionPane.showMessageDialog(null, "Não há registros");
-            }
-                
-        }
-        catch(Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao exibir"+e.getMessage());
-        }
+        listaAtendimento();
     }//GEN-LAST:event_ate_carregarActionPerformed
 
     private void ate_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ate_removerActionPerformed
@@ -1218,8 +1401,8 @@ public class Gerenciamento extends javax.swing.JFrame {
         }else
             JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
         
-        ate_carregarActionPerformed(evt);
-        
+        listaAtendimento();
+        carregaFKs();
     }//GEN-LAST:event_ate_removerActionPerformed
 
     private void cli_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cli_removerActionPerformed
@@ -1238,11 +1421,27 @@ public class Gerenciamento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
         
         cli_carregarActionPerformed(evt);
-        
+        carregaFKs();
     }//GEN-LAST:event_cli_removerActionPerformed
 
     private void cli_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cli_atualizarActionPerformed
-        // TODO add your handling code here:
+        cliente cli = new cliente();
+        clienteDAO dados = new clienteDAO();
+        
+        cli.setCliente_id(Cliente_id);
+        cli.setNome(cli_nome.getText());
+        cli.setCpf(cli_cpf.getText());
+        cli.setEmail(cli_email.getText());
+        cli.setNumero(cli_numero.getText());
+        cli.setRua(cli_rua.getText());
+        cli.setBairro(cli_bairro.getText());
+        cli.setCidade(cli_cidade.getText());
+        cli.setEstado(cli_estado.getText());
+        
+        dados.atualizaDados(cli);
+        
+        listaCliente();
+        carregaFKs();
     }//GEN-LAST:event_cli_atualizarActionPerformed
 
     private void fun_REMOVERActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fun_REMOVERActionPerformed
@@ -1260,7 +1459,9 @@ public class Gerenciamento extends javax.swing.JFrame {
         }else
             JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");  
         
-        fun_carregarActionPerformed(evt);
+        listaFuncionario();
+        carregaFKs();
+        
     }//GEN-LAST:event_fun_REMOVERActionPerformed
 
     private void esp_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esp_removerActionPerformed
@@ -1277,7 +1478,8 @@ public class Gerenciamento extends javax.swing.JFrame {
         }else
             JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
         
-        esp_carregarActionPerformed(evt);
+        listaEspecialidade();
+        carregaFKs();
     }//GEN-LAST:event_esp_removerActionPerformed
 
     private void den_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_den_removerActionPerformed
@@ -1294,7 +1496,8 @@ public class Gerenciamento extends javax.swing.JFrame {
         }else
             JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
         
-        den_carregarActionPerformed(evt);
+        listaDentista();
+        carregaFKs();
     }//GEN-LAST:event_den_removerActionPerformed
 
     private void ser_removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ser_removerActionPerformed
@@ -1311,15 +1514,260 @@ public class Gerenciamento extends javax.swing.JFrame {
         }else
             JOptionPane.showMessageDialog(null, "Selecione um registro primeiro");
         
-        ser_carregarActionPerformed(evt);
+        listaServico();
+        carregaFKs();
     }//GEN-LAST:event_ser_removerActionPerformed
+
+    private void cli_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cli_tableMouseClicked
+        int oReg = cli_table.getSelectedRow();
+        if(oReg != -1)
+        {
+            
+            JOptionPane.showMessageDialog(null, "Registro:"+ cli_table.getSelectedRow() +"\n ID:"+ cli_table.getValueAt(oReg, 0));
+            Cliente_id = Integer.parseInt(cli_table.getValueAt(oReg, 0).toString());
+            cli_nome.setText(cli_table.getValueAt( cli_table.getSelectedRow(), 1).toString());
+            cli_cpf.setText(cli_table.getValueAt( cli_table.getSelectedRow(), 2).toString());
+            cli_email.setText(cli_table.getValueAt( cli_table.getSelectedRow(), 3).toString());
+            cli_numero.setText(cli_table.getValueAt( cli_table.getSelectedRow(), 4).toString());
+            cli_rua.setText(cli_table.getValueAt( cli_table.getSelectedRow(), 5).toString());
+            cli_bairro.setText(cli_table.getValueAt( cli_table.getSelectedRow(), 6).toString());
+            cli_cidade.setText(cli_table.getValueAt( cli_table.getSelectedRow(), 8).toString());
+            cli_estado.setText(cli_table.getValueAt( cli_table.getSelectedRow(), 7).toString());
+            
+        }
+    }//GEN-LAST:event_cli_tableMouseClicked
+
+    private void fun_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fun_atualizarActionPerformed
+        funcionario fun = new funcionario();
+        funcionarioDAO dados = new funcionarioDAO();
+        
+        fun.setFuncionario_id(Funcionario_id);
+        fun.setNome(fun_nome.getText());
+        fun.setCtps(fun_ctps.getText());
+        fun.setTelefone(fun_telefone.getText());
+        
+        dados.atualizaDados(fun);
+        
+        listaFuncionario();
+        
+        carregaFKs();
+    }//GEN-LAST:event_fun_atualizarActionPerformed
+
+    private void esp_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esp_atualizarActionPerformed
+        especialidade esp = new especialidade();
+        especialidadeDAO dados = new especialidadeDAO();
+        
+        esp.setEspecialidade_id(Especialidade_id);
+        esp.setNome(esp_nome.getText());
+        esp.setDesc(esp_descricao.getText());
+        
+        dados.atualizaDados(esp);
+        
+        listaEspecialidade();
+        
+        carregaFKs();
+    }//GEN-LAST:event_esp_atualizarActionPerformed
+
+    private void fun_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fun_tableMouseClicked
+        int oReg = fun_table.getSelectedRow();
+        if(oReg != -1)
+        {
+            
+            JOptionPane.showMessageDialog(null, "Registro:"+ cli_table.getSelectedRow() +"\n ID:"+ cli_table.getValueAt(oReg, 0));
+            Funcionario_id = Integer.parseInt(cli_table.getValueAt(oReg, 0).toString());
+            fun_nome.setText(fun_table.getValueAt( oReg, 1).toString());
+            fun_ctps.setText(fun_table.getValueAt( oReg, 2).toString());
+            fun_telefone.setText(fun_table.getValueAt( oReg, 3).toString());
+            
+        }
+    }//GEN-LAST:event_fun_tableMouseClicked
+
+    private void esp_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_esp_tableMouseClicked
+        int oReg = esp_table.getSelectedRow();
+        if(oReg != -1)
+        {
+            
+            JOptionPane.showMessageDialog(null, "Registro:"+ esp_table.getSelectedRow() +"\n ID:"+ esp_table.getValueAt(oReg, 0));
+            Especialidade_id = Integer.parseInt(esp_table.getValueAt(oReg, 0).toString());
+            esp_nome.setText(esp_table.getValueAt( oReg, 1).toString());
+            esp_descricao.setText(esp_table.getValueAt( oReg, 2).toString());   
+        }
+    }//GEN-LAST:event_esp_tableMouseClicked
+
+    private void den_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_den_tableMouseClicked
+        int oReg = den_table.getSelectedRow();
+        if(oReg != -1)
+        {
+            
+            JOptionPane.showMessageDialog(null, "Registro:"+ den_table.getSelectedRow() +"\n ID:"+ den_table.getValueAt(oReg, 0));
+            Dentista_id = Integer.parseInt(den_table.getValueAt(oReg, 0).toString());
+            den_nome.setText(den_table.getValueAt( oReg, 1).toString());
+            den_cro.setText(den_table.getValueAt( oReg, 2).toString());   
+            den_telefone.setText(den_table.getValueAt( oReg, 3).toString());  
+            
+            //Connection con = new ConexaoDAO().conectaBD();
+            
+            ArrayList<Object> oRegs = new ArrayList<Object>();
+            
+            for(int i=0; i < den_especialidade.getItemCount(); i++){
+                oRegs.add(den_especialidade.getItemAt(i));
+            }
+            
+            den_especialidade.setSelectedIndex(oRegs.indexOf(den_table.getValueAt((oReg), 4)));
+            
+            /*try{
+                String sql = "SELECT especialidade_id FROM dentista WHERE dentista_id = ?";
+                PreparedStatement pstm = con.prepareStatement(sql);
+                
+                pstm.setInt(1, Dentista_id);
+                ResultSet rs = pstm.executeQuery();
+                rs.next();
+                den_especialidade.setSelectedIndex(rs.getInt("especialidade_id"));
+            }catch(SQLException e) {
+                JOptionPane.showMessageDialog(null, "ERRO: "+ e.getMessage());
+            }*/
+            //JOptionPane.showMessageDialog(null, den_especialidade.getModel().ge);
+        }
+    }//GEN-LAST:event_den_tableMouseClicked
+
+    private void ser_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ser_atualizarActionPerformed
+        servico ser = new servico();
+        servicoDAO dados = new servicoDAO();
+        
+        ser.setServico_id(Servico_id);
+        ser.setDesc(ser_descricao.getText());
+	ser.setDuracao(ser_duracao.getText());
+        ser.setValor(Integer.parseInt(ser_valor.getText()));
+		
+        dados.atualizaDados(ser);
+        
+        listaServico();
+        
+        carregaFKs();
+    }//GEN-LAST:event_ser_atualizarActionPerformed
+
+    private void ate_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ate_atualizarActionPerformed
+        atendimento ate = new atendimento();
+        atendimentoDAO dados = new atendimentoDAO();
+
+        ate.setAtendimento_id(Atendimento_id);
+        ate.setDentista(ate_dentista.getSelectedItem().toString());
+        ate.setCliente(ate_cliente.getSelectedItem().toString());
+        ate.setServico(ate_servico.getSelectedItem().toString());
+        ate.setFuncionario(ate_funcionario.getSelectedItem().toString());
+        
+        dados.atualizaDados(ate);
+
+        listaAtendimento();
+        
+        carregaFKs();
+    }//GEN-LAST:event_ate_atualizarActionPerformed
+
+    private void ate_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ate_tableMouseClicked
+        int oReg = ate_table.getSelectedRow();
+        if(oReg != -1)
+        {
+            
+            JOptionPane.showMessageDialog(null, "Registro:"+ ate_table.getSelectedRow() +"\n ID:"+ ate_table.getValueAt(oReg, 0));
+            Atendimento_id = Integer.parseInt(ate_table.getValueAt(oReg, 0).toString());
+            ate_data.setText(ate_table.getValueAt( oReg, 5).toString());
+                    
+            //Connection con = new ConexaoDAO().conectaBD();
+            
+            
+            /*try{
+                String sql = "SELECT dentista_id den, cliente_id cli, servico_id ser, funcionario_id fun FROM atendimento WHERE atendimento_id = ?";
+                PreparedStatement pstm = con.prepareStatement(sql);
+                
+                pstm.setInt(1, Atendimento_id);
+                ResultSet rs = pstm.executeQuery();
+                rs.next();
+                ate_dentista.setSelectedIndex(rs.getInt("den"));
+                ate_cliente.setSelectedIndex(rs.getInt("cli"));
+                ate_servico.setSelectedIndex(rs.getInt("ser"));
+                ate_funcionario.setSelectedIndex(rs.getInt("fun"));
+            }catch(SQLException e) {
+                JOptionPane.showMessageDialog(null, "ERRO: "+ e.getMessage());
+            }*/
+            
+            ArrayList<Object> oRegs = new ArrayList<Object>();
+            int i;
+            for(i=0; i < ate_dentista.getItemCount(); i++){
+                oRegs.add(ate_dentista.getItemAt(i));
+            }
+            ate_dentista.setSelectedIndex(oRegs.indexOf(ate_table.getValueAt(oReg, 1)));
+            oRegs.clear();
+            for(i=0; i < ate_cliente.getItemCount(); i++){
+                oRegs.add(ate_cliente.getItemAt(i));
+            }
+            ate_cliente.setSelectedIndex(oRegs.indexOf(ate_table.getValueAt(oReg, 2)));
+            oRegs.clear();
+            for(i=0; i < ate_servico.getItemCount(); i++){
+                oRegs.add(ate_servico.getItemAt(i));
+            }
+            ate_servico.setSelectedIndex(oRegs.indexOf(ate_table.getValueAt(oReg, 3)));
+            oRegs.clear();
+            for(i=0; i < ate_funcionario.getItemCount(); i++){
+                oRegs.add(ate_funcionario.getItemAt(i));
+            }
+            ate_funcionario.setSelectedIndex(oRegs.indexOf(ate_table.getValueAt(oReg, 4)));
+            oRegs.clear();
+        }
+    }//GEN-LAST:event_ate_tableMouseClicked
+
+    private void ser_tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ser_tableMouseClicked
+        int oReg = ser_table.getSelectedRow();
+        if(oReg != -1)
+        {
+            
+            JOptionPane.showMessageDialog(null, "Registro:"+ ser_table.getSelectedRow() +"\n ID:"+ ser_table.getValueAt(oReg, 0));
+            Servico_id = Integer.parseInt(ser_table.getValueAt(oReg, 0).toString());
+            ser_descricao.setText(ser_table.getValueAt( oReg, 1).toString());   
+            ser_duracao.setText(ser_table.getValueAt( oReg, 2).toString());
+            ser_valor.setText(ser_table.getValueAt( oReg, 3).toString());
+        }
+    }//GEN-LAST:event_ser_tableMouseClicked
+
+    private void den_atualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_den_atualizarActionPerformed
+        dentista den = new dentista();
+        dentistaDAO dados = new dentistaDAO();
+        
+        den.setDentista_id(Dentista_id);
+        den.setNome(den_nome.getText());
+        den.setCro(den_cro.getText());
+        den.setTel(den_telefone.getText());
+        den.setEspecialidade_id(den_especialidade.getSelectedItem().toString());
+        
+        dados.atualizaDados(den);
+        
+        listaDentista();
+        
+        carregaFKs();
+    }//GEN-LAST:event_den_atualizarActionPerformed
+
+    private void esp_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_esp_cadastrarActionPerformed
+        if(esp_nome.getText().isEmpty() || esp_descricao.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+        }
+        else {
+            especialidade esp = new especialidade();
+            especialidadeDAO insert = new especialidadeDAO();
+            
+            esp.setNome(esp_nome.getText());
+            esp.setDesc(esp_descricao.getText());
+         
+            insert.cadastro(esp);
+        }
+        carregaFKs();
+        carregarTabelas();
+    }//GEN-LAST:event_esp_cadastrarActionPerformed
 
     
     private void carregaDentista_Especialidade(){
     
         Connection con = new ConexaoDAO().conectaBD();
         
-        String sql = "SELECT nome FROM especialidade";
+        String sql = "SELECT nome FROM especialidade WHERE ativo = 1";
         ArrayList<String> lista = new ArrayList<>();
         
         try{
@@ -1332,7 +1780,7 @@ public class Gerenciamento extends javax.swing.JFrame {
         }catch(SQLException e) {
             JOptionPane.showMessageDialog(null, "ERRO: "+ e.getMessage());
         }
-        
+        den_especialidade.removeAllItems();
         for(int num=0;num<lista.size();num++)
         {
             den_especialidade.addItem(lista.get(num));
@@ -1343,7 +1791,7 @@ public class Gerenciamento extends javax.swing.JFrame {
     private void carregaAtendimento_Dentista(){
         Connection con = new ConexaoDAO().conectaBD();
         
-        String sql = "SELECT nome FROM dentista";
+        String sql = "SELECT nome FROM dentista WHERE ativo = 1";
         ArrayList<String> lista = new ArrayList<>();
         
         try{
@@ -1357,6 +1805,7 @@ public class Gerenciamento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERRO: "+ e.getMessage());
         }
         
+        ate_dentista.removeAllItems();
         for(int num=0;num<lista.size();num++)
         {
             ate_dentista.addItem(lista.get(num));
@@ -1367,7 +1816,7 @@ public class Gerenciamento extends javax.swing.JFrame {
     
     Connection con = new ConexaoDAO().conectaBD();
         
-        String sql = "SELECT nome FROM cliente";
+        String sql = "SELECT nome FROM cliente WHERE ativo = 1";
         ArrayList<String> lista = new ArrayList<>();
         
         try{
@@ -1381,6 +1830,7 @@ public class Gerenciamento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERRO: "+ e.getMessage());
         }
         
+        ate_cliente.removeAllItems();
         for(int num=0;num<lista.size();num++)
         {
             ate_cliente.addItem(lista.get(num));
@@ -1392,7 +1842,7 @@ public class Gerenciamento extends javax.swing.JFrame {
     
     Connection con = new ConexaoDAO().conectaBD();
         
-        String sql = "SELECT descricao FROM servico";
+        String sql = "SELECT descricao FROM servico WHERE ativo = 1";
         ArrayList<String> lista = new ArrayList<>();
         
         try{
@@ -1406,6 +1856,7 @@ public class Gerenciamento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERRO: "+ e.getMessage());
         }
         
+        ate_servico.removeAllItems();
         for(int num=0;num<lista.size();num++)
         {
             ate_servico.addItem(lista.get(num));
@@ -1418,7 +1869,7 @@ public class Gerenciamento extends javax.swing.JFrame {
     
     Connection con = new ConexaoDAO().conectaBD();
         
-        String sql = "SELECT nome FROM funcionario";
+        String sql = "SELECT nome FROM funcionario WHERE ativo = 1";
         ArrayList<String> lista = new ArrayList<>();
         
         try{
@@ -1432,6 +1883,7 @@ public class Gerenciamento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "ERRO: "+ e.getMessage());
         }
         
+        ate_funcionario.removeAllItems();
         for(int num=0;num<lista.size();num++)
         {
             ate_funcionario.addItem(lista.get(num));
@@ -1439,6 +1891,8 @@ public class Gerenciamento extends javax.swing.JFrame {
         
     
     }
+    
+    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1477,6 +1931,7 @@ public class Gerenciamento extends javax.swing.JFrame {
     private javax.swing.JButton ate_cadastrar;
     private javax.swing.JButton ate_carregar;
     private javax.swing.JComboBox<String> ate_cliente;
+    private javax.swing.JTextField ate_data;
     private javax.swing.JComboBox<String> ate_dentista;
     private javax.swing.JComboBox<String> ate_funcionario;
     private javax.swing.JButton ate_remover;
@@ -1492,7 +1947,6 @@ public class Gerenciamento extends javax.swing.JFrame {
     private javax.swing.JTextField cli_email;
     private javax.swing.JTextField cli_estado;
     private javax.swing.JTextField cli_nome;
-    private javax.swing.JTextField cli_nome1;
     private javax.swing.JTextField cli_numero;
     private javax.swing.JButton cli_remover;
     private javax.swing.JTextField cli_rua;
@@ -1543,7 +1997,13 @@ public class Gerenciamento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
